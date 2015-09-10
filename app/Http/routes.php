@@ -10,13 +10,21 @@
 | and give it the controller to call when that URI is requested.
 |
 */
+Route::get('home', 'Index\HomeController@index');
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', 'Product\ProductController@redbean');
 
-Route::get('/product', 'ProductController@index');
-Route::get('/product/json-list', 'ProductController@jsonList');
-Route::get('/product/detail/{id?}', 'ProductController@detail')->where('id', '[0-9]+');
-Route::get('/product/remove/{id?}', 'ProductController@remove')->where('id', '[0-9]+');
-Route::match(array('GET' , 'POST'),'/product/form/{id?}', 'ProductController@form')->where('id', '[0-9]+');
+Route::controllers([
+    'auth' => 'Auth\AuthController',
+    'password' => 'Auth\PasswordController',
+]);
+
+Route::get('/product', 'Product\ProductController@index');
+Route::get('/product/json-list', 'Product\ProductController@jsonList');
+Route::get('/product/detail/{id?}', 'Product\ProductController@detail')->where('id', '[0-9]+');
+Route::get('/product/remove/{id?}',
+    array(
+        'uses' => 'Product\ProductController@remove'
+    )
+)->where('id', '[0-9]+');
+Route::match(array('GET' , 'POST'),'/product/form/{id?}', 'Product\ProductController@form')->where('id', '[0-9]+');

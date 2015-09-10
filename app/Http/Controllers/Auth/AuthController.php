@@ -45,6 +45,14 @@ class AuthController extends Controller
             'name' => 'required|max:255',
             'email' => 'required|email|max:255|unique:users',
             'password' => 'required|confirmed|min:6',
+        ], [
+            'email.email' => 'O campo :attribute deve ser um e-mail.',
+            'email.max' => 'O campo :attribute deve ter no máximo 200 caracteres.',
+            'name.requred' => 'O campo :attribute é obrigatório.',
+            'password.required' => 'O campo :attribute é obrigatório.',
+            'password.confirmed' => 'O campo :attribute não combina com a confirmação.',
+            'password.min' => 'O campo :attribute deve ter no mínimo 6 caracteres.',
+            'password.confirmed' => 'O campo :attribute abobrinha.'
         ]);
     }
 

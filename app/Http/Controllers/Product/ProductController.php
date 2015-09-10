@@ -6,14 +6,30 @@
  * Time: 22:04
  */
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Product;
 
 use Request;
 use Illuminate\Support\Facades\DB;
 use App\Product;
+use App\Http\Controllers\Controller;
+use App\Http\Requests\ProductRequest;
+use RedBeanPHP\R as R;
 
 class ProductController extends Controller {
 
+    public function __construct() {
+        $this->middleware('auth', array('only' => ['form', 'remove']));
+    }
+
+    public function redbean() {
+
+        $category = R::dispense('category');
+        $category->name = 'Example 2';
+        R::store($category);
+
+        return view('welcome');
+
+    }
     public function index() {
 
         $produtos = Product::all();
@@ -28,7 +44,7 @@ class ProductController extends Controller {
         return response()->json($produtos);
     }
 
-    public function detail($id) {
+    public function detail(ProductRequest $request, $id) {
 
         if ($id) {
             $produto = Product::find($id);
@@ -42,27 +58,26 @@ class ProductController extends Controller {
         }
     }
 
-    public function form($id) {
+    public function form(ProductRequest $request) {
 
-        $produto = Product::findOrNew($id);
+        $produto = Product::findOrNew($request->get('id', null));
 
         if (Request::isMethod('post')) {
-            $produto->fill(Request::all());
+            $produto->fill($request->all());
             $produto->save();
 
-            return redirect()->action('ProductController@index')->withInput(Request::except('_token'));
+            return redirect()->action('Product\ProductController@index')->withInput(Request::except('_token'));
         }
 
         return view('products.form')->with('product', $produto);
     }
 
-    public function remove($id) {
+    public function remove(ProductRequest $request, $id) {
 
         if ($id) {
             $produto = Product::find($id);
-            var_dump($produto);
             $produto->delete();
         }
-        return redirect()->action('ProductController@index');
+        return redirect()->action('Product\ProductController@index');
     }
 } 
