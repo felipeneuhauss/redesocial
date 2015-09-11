@@ -23,9 +23,16 @@ class ProductController extends Controller {
 
     public function redbean() {
 
-        $category = R::dispense('category');
-        $category->name = 'Example 2';
-        R::store($category);
+//        R::setup( 'mysql:host=127.0.0.1;dbname=upeventos',
+//            'root', '' );
+//        $product = R::dispense('product');
+//        $product->name = "Shampoo";
+//        R::store($product);
+//
+//        $category = R::dispense('category');
+//        $category->name = 'Cabelo liso';
+//        $category->ownProductList[] = $product;
+//        R::store($category);
 
         return view('welcome');
 

@@ -15,14 +15,13 @@ class DatabaseSeeder extends Seeder
     {
         Model::unguard();
 
-        $this->call('ProdutoTableSeeder');
-        $this->call('ProdutoTableSeeder');
+        $this->call('CategoryTableSeeder');
 
         Model::reguard();
     }
 }
 
-class ProdutoTableSeeder extends Seeder {
+class CategoryTableSeeder extends Seeder {
     public function run()
     {
         DB::insert('insert into produtos
