@@ -11,25 +11,13 @@
          @endforeach
    </ul> </div>
    @endif
-   <form action="/product/form/{{$product->id}}" method="post">
+   <form action="/products/form/{{$vo->id}}" method="post">
     <input type="hidden" name="_token" value="{{csrf_token()}}" />
      <div class="form-group">
-       <label>Nome</label>
-       <input name="nome" class="form-control" value="{{old('nome')}}"/>
-     </div>
-     <div class="form-group">
        <label>Descricao</label>
-       <input name="descricao" class="form-control" value="{{old('descricao')}}"/>
+       <input name="description" class="form-control" value="{{$vo->description}}"/>
      </div>
-     <div class="form-group">
-       <label>Valor</label>
-       <input name="valor" class="form-control" value="{{old('valor')}}"/>
-     </div>
-     <div class="form-group">
-       <label>Quantidade</label>
-       <input type="number" name="quantidade" class="form-control" value="{{old('quantidade')}}" />
-   </div>
-        <input type="hidden" name="id" value="{{old('id')}}" />
+        <input type="hidden" name="id" value="{{$vo->id}}" />
         <button type="submit"
         class="btn btn-primary btn-block">Submit</button>
    </form>

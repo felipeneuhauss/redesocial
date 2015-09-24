@@ -45,7 +45,7 @@
         </form>
         <ul class="nav navbar-nav navbar-right">
           @if (Auth::check())
-            <li><a href="/product">Listagem</a></li>
+            <li><a href="/products">Listagem</a></li>
             <li><a href="{{action('Product\ProductController@form')}}">Novo</a></li>
             <li><a href="/auth/logout">Logout</a></li>
           @endif

@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateGalleriesTable extends Migration
+class CreateSupplierGalleriesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,16 +12,17 @@ class CreateGalleriesTable extends Migration
      */
     public function up()
     {
-        Schema::create('galleries', function (Blueprint $table) {
+        Schema::create('supplier_galleries', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('name');
             $table->integer('supplier_id')->unsigned();
+            $table->integer('gallery_id')->unsigned();
             $table->timestamps();
         });
-
-        Schema::table('galleries', function (Blueprint $table) {
+        Schema::table('supplier_galleries', function (Blueprint $table) {
             $table->foreign('supplier_id')->references('id')->on('suppliers');
+            $table->foreign('gallery_id')->references('id')->on('galleries');
         });
+
     }
 
     /**
@@ -31,6 +32,6 @@ class CreateGalleriesTable extends Migration
      */
     public function down()
     {
-        Schema::drop('galleries');
+        Schema::drop('supplier_galleries');
     }
 }

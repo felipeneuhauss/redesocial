@@ -9,18 +9,17 @@
     <?php endif ?>
 <table class="table table-striped
               table-bordered table-hover">
-    <?php foreach ($produtos as $p): ?> <tr>
+    <?php foreach ($data as $p): ?> <tr>
     <td><?= $p->nome ?></td>
-    <td><?= $p->valor ?></td>
-    <td><?= $p->descricao ?></td>
-    <td><?= $p->quantidade ?></td>
-    <td><a href="/product/detail/<?= $p->id; ?>">
+    <td><?= $p->description ?></td>
+    <td><a href="/products/detail/<?= $p->id; ?>">
           <span class="glyphicon glyphicon-search"></span>
-        </a></td>
-    <td><a href="/product/remove/<?= $p->id; ?>">
+        </a>
+    </td>
+    <td><a href="/products/remove/<?= $p->id; ?>">
               <span class="glyphicon glyphicon-trash"></span>
             </a></td>
-    <td><a href="/product/form/<?= $p->id; ?>">
+    <td><a href="/products/form/<?= $p->id; ?>">
               <span class="glyphicon glyphicon-edit"></span>
             </a></td>
     </tr>

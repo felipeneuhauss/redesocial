@@ -2,9 +2,10 @@
 
 namespace App\Http\Requests;
 
+use App\Http\Requests\Contracts\RequestInterface;
 use App\Http\Requests\Request;
 
-class ProductRequest extends Request
+class ProductRequest extends Request implements RequestInterface
 {
     /**
      * Determine if the user is authorized to make this request.

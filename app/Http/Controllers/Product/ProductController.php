@@ -8,83 +8,33 @@
 
 namespace App\Http\Controllers\Product;
 
+use App\Http\Controllers\AppController;
+use App\Models\Product;
+use App\Repositories\Eloquent\ProductRepository;
+use Illuminate\Support\Facades\Validator;
 use Request;
-use Illuminate\Support\Facades\DB;
-use App\Product;
-use App\Http\Controllers\Controller;
-use App\Http\Requests\ProductRequest;
-use RedBeanPHP\R as R;
 
-class ProductController extends Controller {
+class ProductController extends AppController {
 
     public function __construct() {
-        $this->middleware('auth', array('only' => ['form', 'remove']));
+        parent::__construct();
+        $this->repository = new ProductRepository(new Product());
+        $this->viewFolderName = 'products';
     }
 
-    public function redbean() {
-
-//        R::setup( 'mysql:host=127.0.0.1;dbname=upeventos',
-//            'root', '' );
-//        $product = R::dispense('product');
-//        $product->name = "Shampoo";
-//        R::store($product);
-//
-//        $category = R::dispense('category');
-//        $category->name = 'Cabelo liso';
-//        $category->ownProductList[] = $product;
-//        R::store($category);
-
-        return view('welcome');
-
-    }
-    public function index() {
-
-        $produtos = Product::all();
-
-        return view('products.list')->with('produtos', $produtos);
+    public function _validate()
+    {
+        return Validator::make(Request::all(), [
+            'nome' => 'required|max:100|min:3',
+            'descricao' => 'required|max:255',
+            'valor' => 'required|numeric'
+        ],  [
+            'nome.required' => 'O campo :attribute é obrigatório.',
+            'descricao.required' => 'O campo :attribute é obrigatório.',
+            'valor.required' => 'O campo :attribute é obrigatório.',
+            'nome.min' => 'O campo :attribute deve ter no mínimo 3 caracteres.',
+            'valor.numeric' => 'O campo :attribute deve ser um número.',
+            ]);
     }
 
-    public function jsonList() {
-
-        $produtos = Product::all();
-
-        return response()->json($produtos);
-    }
-
-    public function detail(ProductRequest $request, $id) {
-
-        if ($id) {
-            $produto = Product::find($id);
-            if (empty($produto)) {
-                return "Produto não encontrado";
-            }
-
-            return view('products.detail')->with('p', $produto);
-        } else {
-            return "Produto não existe";
-        }
-    }
-
-    public function form(ProductRequest $request) {
-
-        $produto = Product::findOrNew($request->get('id', null));
-
-        if (Request::isMethod('post')) {
-            $produto->fill($request->all());
-            $produto->save();
-
-            return redirect()->action('Product\ProductController@index')->withInput(Request::except('_token'));
-        }
-
-        return view('products.form')->with('product', $produto);
-    }
-
-    public function remove(ProductRequest $request, $id) {
-
-        if ($id) {
-            $produto = Product::find($id);
-            $produto->delete();
-        }
-        return redirect()->action('Product\ProductController@index');
-    }
-} 
+}
