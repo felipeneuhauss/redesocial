@@ -18,6 +18,9 @@ Route::controllers([
 ]);
 
 Route::get('/', 'Product\ProductController@index');
+Route::get('/home', function(){
+    return view('index.home');
+});
 Route::match(array('GET' , 'POST'),'/products/form/{id?}', 'Product\ProductController@form')
     ->where('id', '[0-9]+');
 
