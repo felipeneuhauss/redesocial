@@ -8394,7 +8394,7 @@ label.error {
     font-weight: 400;
 }
 
-label.error { display: none !important; }
+/*label.error { display: none !important; }*/
 
 .form-control.error,
 .sm-form-control.error { border-color: #E42C3E; }
@@ -9898,4 +9898,18 @@ body:not(.no-transition) #wrapper,
     transform: none!important;
     margin:0!important;
     padding:0!important
+}
+
+
+
+span.month {
+    padding:5px;border-right: 1px solid #ccc
+}
+
+span.year {
+    padding:5px;border-right: 1px solid #ccc
+}
+
+.datepicker span, td, th {
+    cursor:pointer;
 }

@@ -13,4 +13,7 @@ interface RepositoryInterface {
     public function create(array $data);
     public function update($id, array $data);
     public function delete($id);
+    public function where($field, $condition, $value);
+    public function paginate($perPage = 15, $search);
+    public function getFillable();
 }

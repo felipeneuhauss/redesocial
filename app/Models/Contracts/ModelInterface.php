@@ -11,4 +11,5 @@ namespace App\Models\Contracts;
 
 interface ModelInterface {
 
+    public function queryPagination($perPage = 15, $search);
 } 

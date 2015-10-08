@@ -19,12 +19,17 @@ class Product extends Model implements ModelInterface
     protected $guarded = ['id'];
 
     public function categories() {
-        return $this->belongsToMany('App\Category', 'product_categories');
+        return $this->belongsToMany('\App\Models\Category', 'product_categories');
     }
 
     public static function boot() {
         parent::boot();
 
         self::observe(new \App\Models\Observers\ProductObserver());
+    }
+
+    public function queryPagination($perPage = 15, $search)
+    {
+        // TODO: Implement queryPagination() method.
     }
 }

@@ -1,3 +1,4 @@
+console.log(jQuery);
 var $ = jQuery.noConflict();
 
 $.fn.inlineStyle = function (prop) {
@@ -1451,7 +1452,7 @@ var IGNITE = IGNITE || {};
                     }
                 });
             }
-        },		
+        },
 
         flickrFeed: function(){
             if( $flickrFeedEl.length > 0 ){

@@ -11,7 +11,7 @@ namespace App\Repositories\Eloquent;
 
 use App\Repositories\AbstractRepository;
 
-class ProductRepository extends AbstractRepository {
+class Repository extends AbstractRepository {
 
     /**
      * @param Produto $model

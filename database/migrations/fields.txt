@@ -1,0 +1,1 @@
+"id","fantasy_name","social_name","cnpj","representative_name","representative_cpf","representative_phone","zip_code","address","city","state","complement","term_read","link","phone_one","phone_two","site","facebook","twitter","instagram","youtube","user_id","created_at","updated_at","country"

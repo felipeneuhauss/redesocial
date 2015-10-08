@@ -1,7 +1,6 @@
 @extends('layouts.layout')
 @section('content')
 <div>
-
     <h3>Listagem de produtos</h3>
       <?php if (old('nome')): ?>
            <div class="alert alert-success">
@@ -14,14 +13,14 @@
         <td><?= $p->nome ?></td>
         <td><?= $p->description ?></td>
         <td><a href="/products/detail/<?= $p->id; ?>">
-              <span class="glyphicon glyphicon-search"></span>
+              <span class="icon-search"></span>
             </a>
         </td>
         <td><a href="/products/remove/<?= $p->id; ?>">
-                  <span class="glyphicon glyphicon-trash"></span>
+                  <span class="icon-trash"></span>
                 </a></td>
         <td><a href="/products/form/<?= $p->id; ?>">
-                  <span class="glyphicon glyphicon-edit"></span>
+                  <span class="icon-edit"></span>
                 </a></td>
         </tr>
         <?php endforeach ?>

@@ -32,196 +32,196 @@
                 <!-- Portfolio Items
 
                 ============================================= -->
-                <div id="portfolio" class="portfolio-nomargin portfolio-full clearfix">
+                {{--<div id="portfolio" class="portfolio-nomargin portfolio-full clearfix">--}}
 
-                        <article class="portfolio-item pf-media pf-icons">
-                            <div class="portfolio-image">
-                                <img src="http://placehold.it/400x300" alt="">
-                                <div class="portfolio-overlay">
-                                    <div class="portfolio-desc">
-                                        <h3><a href="portfolio-single-1.html">Entrees</a></h3>
-                                        <span>Tellus sit amet mollis</span>
-                                    </div>
-                                    <a href="http://placehold.it/1000x667" class="left-icon" data-lightbox="image"><i class="icon-picture"></i></a>
-                                    <a href="portfolio-single-1.html" class="right-icon"><i class="icon-chevron-right"></i></a>
-                                </div>
-                            </div>
-                  		</article>
+                        {{--<article class="portfolio-item pf-media pf-icons">--}}
+                            {{--<div class="portfolio-image">--}}
+                                {{--<img src="http://placehold.it/400x300" alt="">--}}
+                                {{--<div class="portfolio-overlay">--}}
+                                    {{--<div class="portfolio-desc">--}}
+                                        {{--<h3><a href="portfolio-single-1.html">Entrees</a></h3>--}}
+                                        {{--<span>Tellus sit amet mollis</span>--}}
+                                    {{--</div>--}}
+                                    {{--<a href="http://placehold.it/1000x667" class="left-icon" data-lightbox="image"><i class="icon-picture"></i></a>--}}
+                                    {{--<a href="portfolio-single-1.html" class="right-icon"><i class="icon-chevron-right"></i></a>--}}
+                                {{--</div>--}}
+                            {{--</div>--}}
+                  		{{--</article>--}}
 
-                        <article class="portfolio-item pf-media pf-icons">
-                            <div class="portfolio-image">
-                                <img src="http://placehold.it/400x300" alt="">
-                                <div class="portfolio-overlay">
-                                    <div class="portfolio-desc">
-                                        <h3><a href="portfolio-single-1.html">Ambiance</a></h3>
-                                        <span>Lorem ipsum dolor sit</span>
-                                    </div>
-                                    <a href="http://placehold.it/1000x667" class="left-icon" data-lightbox="image"><i class="icon-picture"></i></a>
-                                    <a href="portfolio-single-1.html" class="right-icon"><i class="icon-chevron-right"></i></a>
-                                </div>
-                            </div>
-                  		</article>
+                        {{--<article class="portfolio-item pf-media pf-icons">--}}
+                            {{--<div class="portfolio-image">--}}
+                                {{--<img src="http://placehold.it/400x300" alt="">--}}
+                                {{--<div class="portfolio-overlay">--}}
+                                    {{--<div class="portfolio-desc">--}}
+                                        {{--<h3><a href="portfolio-single-1.html">Ambiance</a></h3>--}}
+                                        {{--<span>Lorem ipsum dolor sit</span>--}}
+                                    {{--</div>--}}
+                                    {{--<a href="http://placehold.it/1000x667" class="left-icon" data-lightbox="image"><i class="icon-picture"></i></a>--}}
+                                    {{--<a href="portfolio-single-1.html" class="right-icon"><i class="icon-chevron-right"></i></a>--}}
+                                {{--</div>--}}
+                            {{--</div>--}}
+                  		{{--</article>--}}
 
-                        <article class="portfolio-item pf-media pf-icons">
-                            <div class="portfolio-image">
-                                <img src="http://placehold.it/400x300" alt="">
-                                <div class="portfolio-overlay">
-                                    <div class="portfolio-desc">
-                                        <h3><a href="portfolio-single-1.html">Pastry</a></h3>
-                                        <span>Tellus sit amet mollis</span>
-                                    </div>
-                                    <a href="http://placehold.it/1000x667" class="left-icon" data-lightbox="image"><i class="icon-picture"></i></a>
-                                    <a href="portfolio-single-1.html" class="right-icon"><i class="icon-chevron-right"></i></a>
-                                </div>
-                            </div>
-                  		</article>
+                        {{--<article class="portfolio-item pf-media pf-icons">--}}
+                            {{--<div class="portfolio-image">--}}
+                                {{--<img src="http://placehold.it/400x300" alt="">--}}
+                                {{--<div class="portfolio-overlay">--}}
+                                    {{--<div class="portfolio-desc">--}}
+                                        {{--<h3><a href="portfolio-single-1.html">Pastry</a></h3>--}}
+                                        {{--<span>Tellus sit amet mollis</span>--}}
+                                    {{--</div>--}}
+                                    {{--<a href="http://placehold.it/1000x667" class="left-icon" data-lightbox="image"><i class="icon-picture"></i></a>--}}
+                                    {{--<a href="portfolio-single-1.html" class="right-icon"><i class="icon-chevron-right"></i></a>--}}
+                                {{--</div>--}}
+                            {{--</div>--}}
+                  		{{--</article>--}}
 
-                        <article class="portfolio-item pf-media pf-icons">
-                            <div class="portfolio-image">
-                            <div class="fslider" data-arrows="false" data-speed="400" data-pause="4000">
-                                <div class="flexslider">
-                                    <div class="slider-wrap">
-                                        <div class="slide"><img src="http://placehold.it/400x300" alt=""></div>
-                                        <div class="slide"><img src="http://placehold.it/400x300" alt=""></div>
-                                    </div>
-                                </div>
-                            </div>
-                                <div class="portfolio-overlay" data-lightbox="gallery">
-                                    <div class="portfolio-desc">
-                                        <h3><a href="portfolio-single-1.html">A La Carte</a></h3>
-                                        <span>Lorem ipsum dolor sit</span>
-                                    </div>
-                                	<a href="http://placehold.it/1000x667" class="left-icon" data-lightbox="gallery-item"><i class="icon-buffer"></i></a>
-                                	<a href="http://placehold.it/1000x667" class="hidden" data-lightbox="gallery-item"></a>
-                                    <a href="portfolio-single-1.html" class="right-icon"><i class="icon-chevron-right"></i></a>
-                                </div>
-                            </div>
-                  		</article>
+                        {{--<article class="portfolio-item pf-media pf-icons">--}}
+                            {{--<div class="portfolio-image">--}}
+                            {{--<div class="fslider" data-arrows="false" data-speed="400" data-pause="4000">--}}
+                                {{--<div class="flexslider">--}}
+                                    {{--<div class="slider-wrap">--}}
+                                        {{--<div class="slide"><img src="http://placehold.it/400x300" alt=""></div>--}}
+                                        {{--<div class="slide"><img src="http://placehold.it/400x300" alt=""></div>--}}
+                                    {{--</div>--}}
+                                {{--</div>--}}
+                            {{--</div>--}}
+                                {{--<div class="portfolio-overlay" data-lightbox="gallery">--}}
+                                    {{--<div class="portfolio-desc">--}}
+                                        {{--<h3><a href="portfolio-single-1.html">A La Carte</a></h3>--}}
+                                        {{--<span>Lorem ipsum dolor sit</span>--}}
+                                    {{--</div>--}}
+                                	{{--<a href="http://placehold.it/1000x667" class="left-icon" data-lightbox="gallery-item"><i class="icon-buffer"></i></a>--}}
+                                	{{--<a href="http://placehold.it/1000x667" class="hidden" data-lightbox="gallery-item"></a>--}}
+                                    {{--<a href="portfolio-single-1.html" class="right-icon"><i class="icon-chevron-right"></i></a>--}}
+                                {{--</div>--}}
+                            {{--</div>--}}
+                  		{{--</article>--}}
 
-                        <article class="portfolio-item pf-media pf-icons">
-                            <div class="portfolio-image">
-                                <img src="http://placehold.it/400x300" alt="">
-                                <div class="portfolio-overlay">
-                                    <div class="portfolio-desc">
-                                        <h3><a href="portfolio-single-1.html">Desserts</a></h3>
-                                        <span>tellus sit amet mollis</span>
-                                    </div>
-                                    <a href="http://placehold.it/1000x667" class="left-icon" data-lightbox="image"><i class="icon-picture"></i></a>
-                                    <a href="portfolio-single-1.html" class="right-icon"><i class="icon-chevron-right"></i></a>
-                                </div>
-                            </div>
-                  		</article>
+                        {{--<article class="portfolio-item pf-media pf-icons">--}}
+                            {{--<div class="portfolio-image">--}}
+                                {{--<img src="http://placehold.it/400x300" alt="">--}}
+                                {{--<div class="portfolio-overlay">--}}
+                                    {{--<div class="portfolio-desc">--}}
+                                        {{--<h3><a href="portfolio-single-1.html">Desserts</a></h3>--}}
+                                        {{--<span>tellus sit amet mollis</span>--}}
+                                    {{--</div>--}}
+                                    {{--<a href="http://placehold.it/1000x667" class="left-icon" data-lightbox="image"><i class="icon-picture"></i></a>--}}
+                                    {{--<a href="portfolio-single-1.html" class="right-icon"><i class="icon-chevron-right"></i></a>--}}
+                                {{--</div>--}}
+                            {{--</div>--}}
+                  		{{--</article>--}}
 
-                        <article class="portfolio-item pf-media pf-icons">
-                            <div class="portfolio-image">
-                            <div class="fslider" data-arrows="false" data-speed="400" data-pause="4000">
-                                <div class="flexslider">
-                                    <div class="slider-wrap">
-                                        <div class="slide"><img src="http://placehold.it/400x300" alt=""></div>
-                                        <div class="slide"><img src="http://placehold.it/400x300" alt=""></div>
-                                        <div class="slide"><img src="http://placehold.it/400x300" alt=""></div>
-                                    </div>
-                                </div>
-                            </div>
-                                <div class="portfolio-overlay" data-lightbox="gallery">
-                                    <div class="portfolio-desc">
-                                        <h3><a href="portfolio-single-1.html">Specialties</a></h3>
-                                        <span>Lorem ipsum dolor sit</span>
-                                    </div>
-                                	<a href="http://placehold.it/1000x667" class="left-icon" data-lightbox="gallery-item"><i class="icon-buffer"></i></a>
-                                	<a href="http://placehold.it/1000x667" class="hidden" data-lightbox="gallery-item"></a>
-                                	<a href="http://placehold.it/1000x667" class="hidden" data-lightbox="gallery-item"></a>
-                                    <a href="portfolio-single-1.html" class="right-icon"><i class="icon-chevron-right"></i></a>
-                                 </div>
-                            </div>
-                  		</article>
+                        {{--<article class="portfolio-item pf-media pf-icons">--}}
+                            {{--<div class="portfolio-image">--}}
+                            {{--<div class="fslider" data-arrows="false" data-speed="400" data-pause="4000">--}}
+                                {{--<div class="flexslider">--}}
+                                    {{--<div class="slider-wrap">--}}
+                                        {{--<div class="slide"><img src="http://placehold.it/400x300" alt=""></div>--}}
+                                        {{--<div class="slide"><img src="http://placehold.it/400x300" alt=""></div>--}}
+                                        {{--<div class="slide"><img src="http://placehold.it/400x300" alt=""></div>--}}
+                                    {{--</div>--}}
+                                {{--</div>--}}
+                            {{--</div>--}}
+                                {{--<div class="portfolio-overlay" data-lightbox="gallery">--}}
+                                    {{--<div class="portfolio-desc">--}}
+                                        {{--<h3><a href="portfolio-single-1.html">Specialties</a></h3>--}}
+                                        {{--<span>Lorem ipsum dolor sit</span>--}}
+                                    {{--</div>--}}
+                                	{{--<a href="http://placehold.it/1000x667" class="left-icon" data-lightbox="gallery-item"><i class="icon-buffer"></i></a>--}}
+                                	{{--<a href="http://placehold.it/1000x667" class="hidden" data-lightbox="gallery-item"></a>--}}
+                                	{{--<a href="http://placehold.it/1000x667" class="hidden" data-lightbox="gallery-item"></a>--}}
+                                    {{--<a href="portfolio-single-1.html" class="right-icon"><i class="icon-chevron-right"></i></a>--}}
+                                 {{--</div>--}}
+                            {{--</div>--}}
+                  		{{--</article>--}}
 
-                        <article class="portfolio-item pf-media pf-icons">
-                            <div class="portfolio-image">
-                                <img src="http://placehold.it/400x300" alt="">
-                                <div class="portfolio-overlay">
-                                    <div class="portfolio-desc">
-                                        <h3><a href="portfolio-single-video.html">Dining Experience</a></h3>
-                                        <span>Tellus sit amet mollis</span>
-                                    </div>
-                                    <a href="http://player.vimeo.com/video/80975867" class="left-icon" data-lightbox="iframe"><i class="icon-play"></i></a>
-                                    <a href="portfolio-single-video.html" class="right-icon"><i class="icon-chevron-right"></i></a>
-                                </div>
-                            </div>
-                  		</article>
+                        {{--<article class="portfolio-item pf-media pf-icons">--}}
+                            {{--<div class="portfolio-image">--}}
+                                {{--<img src="http://placehold.it/400x300" alt="">--}}
+                                {{--<div class="portfolio-overlay">--}}
+                                    {{--<div class="portfolio-desc">--}}
+                                        {{--<h3><a href="portfolio-single-video.html">Dining Experience</a></h3>--}}
+                                        {{--<span>Tellus sit amet mollis</span>--}}
+                                    {{--</div>--}}
+                                    {{--<a href="http://player.vimeo.com/video/80975867" class="left-icon" data-lightbox="iframe"><i class="icon-play"></i></a>--}}
+                                    {{--<a href="portfolio-single-video.html" class="right-icon"><i class="icon-chevron-right"></i></a>--}}
+                                {{--</div>--}}
+                            {{--</div>--}}
+                  		{{--</article>--}}
 
-                        <article class="portfolio-item pf-media pf-icons">
-                            <div class="portfolio-image">
-                                <img src="http://placehold.it/400x300" alt="">
-                                <div class="portfolio-overlay">
-                                    <div class="portfolio-desc">
-                                        <h3><a href="portfolio-single-1.html">Head Chef</a></h3>
-                                        <span>Lorem ipsum dolor sit</span>
-                                    </div>
-                                    <a href="http://placehold.it/1000x667" class="left-icon" data-lightbox="image"><i class="icon-picture"></i></a>
-                                    <a href="portfolio-single-1.html" class="right-icon"><i class="icon-chevron-right"></i></a>
-                                </div>
-                            </div>
-                  		</article>
+                        {{--<article class="portfolio-item pf-media pf-icons">--}}
+                            {{--<div class="portfolio-image">--}}
+                                {{--<img src="http://placehold.it/400x300" alt="">--}}
+                                {{--<div class="portfolio-overlay">--}}
+                                    {{--<div class="portfolio-desc">--}}
+                                        {{--<h3><a href="portfolio-single-1.html">Head Chef</a></h3>--}}
+                                        {{--<span>Lorem ipsum dolor sit</span>--}}
+                                    {{--</div>--}}
+                                    {{--<a href="http://placehold.it/1000x667" class="left-icon" data-lightbox="image"><i class="icon-picture"></i></a>--}}
+                                    {{--<a href="portfolio-single-1.html" class="right-icon"><i class="icon-chevron-right"></i></a>--}}
+                                {{--</div>--}}
+                            {{--</div>--}}
+                  		{{--</article>--}}
 
-                        <article class="portfolio-item pf-media pf-icons">
-                            <div class="portfolio-image">
-                                <img src="http://placehold.it/400x300" alt="">
-                                <div class="portfolio-overlay">
-                                    <div class="portfolio-desc">
-                                        <h3><a href="portfolio-single-1.html">Imported</a></h3>
-                                        <span>Tellus sit amet mollis</span>
-                                    </div>
-                                    <a href="http://placehold.it/1000x667" class="left-icon" data-lightbox="image"><i class="icon-picture"></i></a>
-                                    <a href="portfolio-single-1.html" class="right-icon"><i class="icon-chevron-right"></i></a>
-                                </div>
-                            </div>
-                  		</article>
+                        {{--<article class="portfolio-item pf-media pf-icons">--}}
+                            {{--<div class="portfolio-image">--}}
+                                {{--<img src="http://placehold.it/400x300" alt="">--}}
+                                {{--<div class="portfolio-overlay">--}}
+                                    {{--<div class="portfolio-desc">--}}
+                                        {{--<h3><a href="portfolio-single-1.html">Imported</a></h3>--}}
+                                        {{--<span>Tellus sit amet mollis</span>--}}
+                                    {{--</div>--}}
+                                    {{--<a href="http://placehold.it/1000x667" class="left-icon" data-lightbox="image"><i class="icon-picture"></i></a>--}}
+                                    {{--<a href="portfolio-single-1.html" class="right-icon"><i class="icon-chevron-right"></i></a>--}}
+                                {{--</div>--}}
+                            {{--</div>--}}
+                  		{{--</article>--}}
 
-                        <article class="portfolio-item pf-media pf-icons">
-                            <div class="portfolio-image">
-                                <img src="http://placehold.it/400x300" alt="">
-                                <div class="portfolio-overlay">
-                                    <div class="portfolio-desc">
-                                        <h3><a href="portfolio-single-1.html">Wine Tasting</a></h3>
-                                        <span>Lorem ipsum dolor sit</span>
-                                    </div>
-                                    <a href="http://placehold.it/1000x667" class="left-icon" data-lightbox="image"><i class="icon-picture"></i></a>
-                                    <a href="portfolio-single-1.html" class="right-icon"><i class="icon-chevron-right"></i></a>
-                                </div>
-                            </div>
-                  		</article>
+                        {{--<article class="portfolio-item pf-media pf-icons">--}}
+                            {{--<div class="portfolio-image">--}}
+                                {{--<img src="http://placehold.it/400x300" alt="">--}}
+                                {{--<div class="portfolio-overlay">--}}
+                                    {{--<div class="portfolio-desc">--}}
+                                        {{--<h3><a href="portfolio-single-1.html">Wine Tasting</a></h3>--}}
+                                        {{--<span>Lorem ipsum dolor sit</span>--}}
+                                    {{--</div>--}}
+                                    {{--<a href="http://placehold.it/1000x667" class="left-icon" data-lightbox="image"><i class="icon-picture"></i></a>--}}
+                                    {{--<a href="portfolio-single-1.html" class="right-icon"><i class="icon-chevron-right"></i></a>--}}
+                                {{--</div>--}}
+                            {{--</div>--}}
+                  		{{--</article>--}}
 
-                        <article class="portfolio-item pf-media pf-icons">
+                        {{--<article class="portfolio-item pf-media pf-icons">--}}
 
-                            <div class="portfolio-image">
-                                <img src="http://placehold.it/400x300" alt="">
-                                <div class="portfolio-overlay">
-                                    <div class="portfolio-desc">
-                                        <h3><a href="portfolio-single-1.html">Special Label</a></h3>
-                                        <span>Tellus sit amet mollis</span>
-                                    </div>
-                                    <a href="http://placehold.it/1000x667" class="left-icon" data-lightbox="image"><i class="icon-picture"></i></a>
-                                    <a href="portfolio-single-1.html" class="right-icon"><i class="icon-chevron-right"></i></a>
-                                </div>
-                            </div>
-                  		</article>
+                            {{--<div class="portfolio-image">--}}
+                                {{--<img src="http://placehold.it/400x300" alt="">--}}
+                                {{--<div class="portfolio-overlay">--}}
+                                    {{--<div class="portfolio-desc">--}}
+                                        {{--<h3><a href="portfolio-single-1.html">Special Label</a></h3>--}}
+                                        {{--<span>Tellus sit amet mollis</span>--}}
+                                    {{--</div>--}}
+                                    {{--<a href="http://placehold.it/1000x667" class="left-icon" data-lightbox="image"><i class="icon-picture"></i></a>--}}
+                                    {{--<a href="portfolio-single-1.html" class="right-icon"><i class="icon-chevron-right"></i></a>--}}
+                                {{--</div>--}}
+                            {{--</div>--}}
+                  		{{--</article>--}}
 
-                        <article class="portfolio-item pf-media pf-icons">
-                            <div class="portfolio-image">
-                                <img src="http://placehold.it/400x300" alt="">
-                                <div class="portfolio-overlay">
-                                    <div class="portfolio-desc">
-                                        <h3><a href="portfolio-single-1.html">Dinner Specials</a></h3>
-                                        <span>Lorem ipsum dolor sit</span>
-                                    </div>
-                                    <a href="http://placehold.it/1000x667" class="left-icon" data-lightbox="image"><i class="icon-picture"></i></a>
-                                    <a href="portfolio-single-1.html" class="right-icon"><i class="icon-chevron-right"></i></a>
-                                </div>
-                            </div>
-                  		</article>
+                        {{--<article class="portfolio-item pf-media pf-icons">--}}
+                            {{--<div class="portfolio-image">--}}
+                                {{--<img src="http://placehold.it/400x300" alt="">--}}
+                                {{--<div class="portfolio-overlay">--}}
+                                    {{--<div class="portfolio-desc">--}}
+                                        {{--<h3><a href="portfolio-single-1.html">Dinner Specials</a></h3>--}}
+                                        {{--<span>Lorem ipsum dolor sit</span>--}}
+                                    {{--</div>--}}
+                                    {{--<a href="http://placehold.it/1000x667" class="left-icon" data-lightbox="image"><i class="icon-picture"></i></a>--}}
+                                    {{--<a href="portfolio-single-1.html" class="right-icon"><i class="icon-chevron-right"></i></a>--}}
+                                {{--</div>--}}
+                            {{--</div>--}}
+                  		{{--</article>--}}
 
-                </div>
+                {{--</div>--}}
                 <!-- End Portfolio Items-->
 
                 <!-- Portfolio Script
@@ -268,21 +268,20 @@
                     <div class="col_one_fourth nobottommargin">
 
                         <div class="fancy-title title-border">
-                            <h4>Entertainment</h4>
+                            <h4>Menu de fornecedores</h4>
                         </div>
 
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aperiam aspernatur facilis cumque amet suscipit odio.</p>
-                        <p>Consectetur adipisicing elit. Aperiam aspernatur facilis cumque amet suscipit.</p>
+                        <p>Veja nossa lista de fornecedores cadastrados por categoria.</p>
 
                             <div class="widget_links clearfix">
                                 <ul>
-                                    <li><a href="#"><div>Menu</div></a></li>
-                                    <li><a href="#"><div>Reservations</div></a></li>
-                                    <li><a href="#"><div>Locations</div></a></li>
-                                    <li><a href="#"><div>Newsletter</div></a></li>
-                                    <li><a href="#"><div>Entertainment</div></a></li>
-                                    <li><a href="#"><div>Events</div></a></li>
-                                    <li><a href="#"><div>Gift Cards</div></a></li>
+                                    <li><a href="#"><div>Transporte</div></a></li>
+                                    <li><a href="#"><div>Locais para eventos</div></a></li>
+                                    <li><a href="#"><div>Cerimonialistas</div></a></li>
+                                    <li><a href="#"><div>Comunicação</div></a></li>
+                                    <li><a href="#"><div>Alimentação</div></a></li>
+                                    <li><a href="#"><div>Segurança</div></a></li>
+                                    <li><a href="#"><div>Organização do evento</div></a></li>
                                 </ul>
                             </div>
                     </div>
@@ -290,7 +289,7 @@
                     <div class="col_one_fourth nobottommargin">
 
                         <div class="fancy-title title-border">
-                            <h4>Events</h4>
+                            <h4>Eventos</h4>
                         </div>
 
                                 <div id="post-list-footer">
@@ -356,7 +355,7 @@
                     <div class="col_half nobottommargin col_last">
 
                         <div class="fancy-title title-border">
-                            <h4>From the Blog</h4>
+                            <h4>Top 10 - Avaliação dos clientes</h4>
                         </div>
 
                         <div id="posts">

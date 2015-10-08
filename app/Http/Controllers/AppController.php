@@ -22,9 +22,16 @@ abstract class AppController extends Controller
 
     public function index() {
 
-        $result = $this->repository->getAll();
+        $search = '';
+        if (Request::input('search') != "" ) {
+            $search = Request::input('search');
+            $result = $this->repository->paginate(15, $search);
+        } else {
+            $result = $this->repository->paginate(15);
+        }
+
         return view($this->viewFolderName.'.'.$this->_formatFileName(__FUNCTION__))
-            ->with('data', $result);
+            ->with('data', $result)->with('search', $search);
     }
 
     /**
@@ -32,6 +39,11 @@ abstract class AppController extends Controller
      * @return $this
      */
     public function form($id = null) {
+
+        if (is_null($id)) {
+            $id = Request::input('id') == null || Request::input('id') == '' ? null : Request::input('id');
+        }
+
         $vo = $this->repository->findOrNew($id);
 
         if (Request::isMethod('post'))
@@ -39,18 +51,18 @@ abstract class AppController extends Controller
             $validator = $this->_validate();
 
             $vo->fill(Request::all());
+
             if ($validator->fails()) {
-                return view($this->viewFolderName.'.'.$this->_formatFileName(__FUNCTION__))
-                    ->withErrors($validator)
-                    ->with('vo', $vo);
+                return view($this->viewFolderName.'.'.$this->_formatFileName(__FUNCTION__),
+                    $this->_initForm($vo))
+                    ->withErrors($validator);
             }
 
             $vo->save();
-
-            return redirect()->action('Product\ProductController@index')->withInput(Request::except('_token'));
+            $this->_postSave($vo);
         }
 
-        return view($this->viewFolderName.'.'.$this->_formatFileName(__FUNCTION__))->with('vo', $vo);
+        return view($this->viewFolderName.'.'.$this->_formatFileName(__FUNCTION__), $this->_initForm($vo));
     }
 
     public function detail($id) {
@@ -72,8 +84,9 @@ abstract class AppController extends Controller
         if ($id) {
             $vo = $this->repository->find($id);
             $vo->delete();
+            return array('success' => true, 'message' => 'Registro removido com sucesso');
         }
-        return redirect()->action('Product\ProductController@index');
+        return array('success' => false, 'message' => 'Registro removido com sucesso');
     }
 
     protected function _formatFileName($functionName) {
@@ -87,6 +100,19 @@ abstract class AppController extends Controller
     public function _validate()
     {
         return Validator::make(Request::all(), [], []);
+    }
+
+    /**
+     *
+     * @param mix $vo
+     * @return array
+     */
+    protected function _initForm($vo = null) {
+        return array('vo' => $vo);
+    }
+
+    protected function _postSave($vo) {
+        return $vo;
     }
 
 }

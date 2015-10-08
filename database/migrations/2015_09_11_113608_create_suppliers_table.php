@@ -20,10 +20,14 @@ class CreateSuppliersTable extends Migration
             $table->string('representative_name',150);
             $table->string('representative_cpf',15);
             $table->string('representative_phone',15);
+            $table->string('email');
             $table->string('zip_code',10);
             $table->string('address',255);
+            $table->string('country');
             $table->string('city', 100);
-            $table->integer('state_id')->unsigned();
+            $table->string('state',100);
+            $table->string('district',150);
+            $table->string('number',100);
             $table->string('complement');
             $table->boolean('term_read');
             $table->string('link')->unique()->index();
@@ -33,13 +37,13 @@ class CreateSuppliersTable extends Migration
             $table->string('facebook');
             $table->string('twitter');
             $table->string('instagram');
+            $table->string('brand_image',255);
             $table->string('youtube');
             $table->integer('user_id')->unsigned();
             $table->timestamps();
         });
 
         Schema::table('suppliers', function (Blueprint $table) {
-            $table->foreign('state_id')->references('id')->on('states');
             $table->foreign('user_id')->references('id')->on('users');
         });
     }

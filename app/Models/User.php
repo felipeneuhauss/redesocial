@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\Contracts\ModelInterface;
 use Illuminate\Auth\Authenticatable;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Auth\Passwords\CanResetPassword;
@@ -12,7 +13,7 @@ use Illuminate\Contracts\Auth\CanResetPassword as CanResetPasswordContract;
 
 class User extends Model implements AuthenticatableContract,
     AuthorizableContract,
-    CanResetPasswordContract
+    CanResetPasswordContract, ModelInterface
 {
     use Authenticatable, Authorizable, CanResetPassword;
 
@@ -28,8 +29,8 @@ class User extends Model implements AuthenticatableContract,
      *
      * @var array
      */
-    protected $fillable = ['name', 'email', 'password', 'zip_code', 'birthday', 'phone', 'zip_code', 'address',
-        'city', 'uf_id', 'complement', 'term_read', 'newsletter', 'remember_token'];
+    protected $fillable = ['name', 'email', 'password', 'zip_code', 'birthday','gender', 'phone', 'zip_code',
+        'address', 'number', 'city', 'state', 'complement', 'term_read', 'newsletter', 'remember_token'];
 
 
     /**
@@ -38,5 +39,13 @@ class User extends Model implements AuthenticatableContract,
      * @var array
      */
     protected $hidden = ['password', 'remember_token'];
+
+    public function queryPagination($perPage = 15, $search) {
+        $result = $this->where('name', 'like', '%'.$search.'%')
+            ->where('email', 'like', '%'.$search.'%')
+            ->paginate($perPage);
+
+        return $result;
+    }
 
 }

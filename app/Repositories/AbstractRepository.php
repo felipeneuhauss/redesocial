@@ -14,6 +14,9 @@ use App\Repositories\Contracts\RepositoryInterface;
 class AbstractRepository implements RepositoryInterface
 {
 
+    /**
+     * @var \App\Models\Contracts\ModelInterface
+     */
     protected $model;
 
     public function getAll()
@@ -44,5 +47,20 @@ class AbstractRepository implements RepositoryInterface
     public function update($id, array $data)
     {
         return $this->model->find($id)->update($data);
+    }
+
+    public function where($field, $condition, $value) {
+        $this->model->where($field, $condition, $value);
+        return $this->model;
+    }
+
+    public function paginate($perPage = 15, $search = null)
+    {
+//        return $this->model->where('name', '=', $search)->paginate($perPage);
+        return $this->model->queryPagination($perPage, $search);
+    }
+
+    public function getFillable() {
+        return $this->model->getFillable();
     }
 }

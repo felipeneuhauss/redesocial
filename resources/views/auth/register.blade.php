@@ -1,65 +1,120 @@
 @extends('layouts.layout')
 
 @section('content')
-<div class="container-fluid">
+<div class="container">
 	<div class="row">
-		<div class="col-md-8 col-md-offset-2">
-			<div class="panel panel-default">
-				<div class="panel-heading">Register</div>
-				<div class="panel-body">
-					@if (count($errors) > 0)
-						<div class="alert alert-danger">
-							<strong>Whoops!</strong> There were some problems with your input.<br><br>
-							<ul>
-								@foreach ($errors->all() as $error)
-									<li>{{ $error }}</li>
-								@endforeach
-							</ul>
-						</div>
-					@endif
+	    <h3>Cadastro de cliente</h3>
+        @include('layouts.messages', array('errors' => $errors))
+        <form id="register-form" role="form" method="POST" action="/auth/register">
+            <div class="col-md-6">
 
-					<form class="form-horizontal" role="form" method="POST" action="/auth/register">
-						<input type="hidden" name="_token" value="{{ csrf_token() }}">
+                    <input type="hidden" name="_token" value="{{ csrf_token() }}">
 
-						<div class="form-group">
-							<label class="col-md-4 control-label">Name</label>
-							<div class="col-md-6">
-								<input type="text" class="form-control" name="name" value="{{ old('name') }}">
-							</div>
-						</div>
+                    <div class="form-group">
+                        <label>Name</label>
+                        <input type="text" class="form-control required" name="name" value="{{ old('name') }}">
+                    </div>
 
-						<div class="form-group">
-							<label class="col-md-4 control-label">E-Mail Address</label>
-							<div class="col-md-6">
-								<input type="text" class="form-control" name="email" value="{{ old('email') }}">
-							</div>
-						</div>
+                    <div class="form-group">
+                        <label>E-mail</label>
+                        <input type="text" class="form-control required email"
+                        name="email" value="{{ old('email') }}"
+                        {{--remote="<?php echo url().'/auth/check-authenticity-email/';?>" --}} />
+                    </div>
 
-						<div class="form-group">
-							<label class="col-md-4 control-label">Password</label>
-							<div class="col-md-6">
-								<input type="password" class="form-control" name="password">
-							</div>
-						</div>
+                    <div class="form-group">
+                        <label>Senha</label>
+                        <input type="password" class="form-control required" name="password" id="password">
+                    </div>
 
-						<div class="form-group">
-							<label class="col-md-4 control-label">Confirm Password</label>
-							<div class="col-md-6">
-								<input type="password" class="form-control" name="password_confirmation">
-							</div>
-						</div>
+                    <div class="form-group">
+                        {!! Form::label('password_confirmation', 'Confirmar senha') !!}
+                        <input type="password" class="form-control required equalTo"
+                        equalTo="#password" name="password_confirmation" >
+                    </div>
 
-						<div class="form-group">
-							<div class="col-md-6 col-md-offset-4">
-								<button type="submit" class="btn btn-primary">
-									Register
-								</button>
-							</div>
-						</div>
-					</form>
-				</div>
-			</div>
-		</div>
+                    <div class="form-group">
+                        {!! Form::label('gender', 'Sexo') !!}
+                        {!! Form::select('gender', $genders, old('gender'), ['placeholder' => 'Selecione...', 'class'=>'form-control required']); !!}
+                    </div>
+
+                    <div class="form-group">
+                        {!! Form::label('birthday', 'Data de nascimento') !!}
+                        {!! Form::text('birthday', old('birthday') , ['placeholder' => 'Data de nascimento', 'class'=>'form-control required datepicker']); !!}
+                    </div>
+
+                    <div class="form-group">
+                        {!! Form::label('phone', 'Telefone') !!}
+                        {!! Form::text('phone', old('phone'), ['placeholder' => 'Número de telefone', 'class'=>'form-control required phone']); !!}
+                    </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group foreign">
+                    {!! Form::label('country', 'País') !!}
+                    {!! Form::select('country', $countries, old('country'), ['placeholder' => 'Selecione...', 'class'=>'form-control required']); !!}
+                </div>
+                <div class="form-group">
+                    {!! Form::label('zip_code', 'CEP') !!}
+                    {!! Form::text('zip_code', old('zip_code'), ['placeholder' => 'CEP', 'class'=>'form-control required cep zip_code']); !!}
+                </div>
+                <div class="form-group">
+                   {!! Form::label('state', 'Estado') !!}
+                   {!! Form::text('state', old('state'), ['placeholder' => 'Estado', 'class'=>'form-control required']); !!}
+                </div>
+                <div class="form-group">
+                   {!! Form::label('city', 'Cidade') !!}
+                   {!! Form::text('city', old('city'), ['placeholder' => 'Cidade', 'class'=>'form-control required']); !!}
+                </div>
+                <div class="form-group">
+                   {!! Form::label('district', 'Bairro') !!}
+                   {!! Form::text('district', old('district'), ['placeholder' => 'Bairro', 'class'=>'form-control required']); !!}
+                </div>
+                <div class="form-group">
+                   {!! Form::label('address', 'Endereço') !!}
+                   {!! Form::text('address', old('address'), ['placeholder' => 'Endereço', 'class'=>'form-control required']); !!}
+                </div>
+
+                <div class="form-group">
+                   {!! Form::label('number', 'Número') !!}
+                   {!! Form::text('number', old('number'), ['placeholder' => 'Número', 'class'=>'form-control required']); !!}
+                </div>
+                <div class="form-group">
+                   {!! Form::label('complement', 'Complemento') !!}
+                   {!! Form::text('complement', old('complement'), ['placeholder' => 'Complemento', 'class'=>'form-control']); !!}
+                </div>
+
+            </div>
+            <div class="col-md-12">
+                <div class="checkbox">
+                    <label>
+                      <input type="checkbox" name="term_read" value="1" class="required"> Aceito os termos de uso da UP Evento
+                    </label>
+                </div>
+                <div class="checkbox">
+                      <label>
+                        <input type="checkbox" name="newsletter" value="1"> Quero receber e-mails de informações e ofertas
+                      </label>
+                </div>
+                <div class="form-group">
+                    <button type="submit" class="btn btn-primary">
+                        Cadastrar
+                    </button>
+                </div>
+            </div>
+
+        </form>
 	</div>
 </div>
+<script type="text/javascript">
+$("#register-form").validate({
+    messages: {
+        email:{
+            required: 'Campo obrigatório.',
+            remote: 'O e-mail informado já está sendo usado no sistema. <br />Por favor, informe outro e-mail.',
+            email:'Informe um e-mail válido.'
+        }
+    }
+});
+
+</script>
 @endsection
