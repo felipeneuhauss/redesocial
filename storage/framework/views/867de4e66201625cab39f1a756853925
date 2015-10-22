@@ -1,0 +1,91 @@
+<?php $__env->startSection('content'); ?>
+<section id="page-title" class="page-title-parallax page-title-dark" style="background-color: #555555; height:127px; padding: 40px 0px;" data-stellar-background-ratio="0.3">
+    <div class="container clearfix">
+        <h1>Novo produto ou serviço</h1>
+        <span></span>
+    </div>
+</section><!-- #page-title end -->
+    <!-- Content
+    ============================================= -->
+<section id="content">
+    <div class="content-wrap bgcolor-grey-light">
+        <div class="container clearfix">
+        <?php echo Form::open(array('id'=>'product-form', 'url'=>'/products/form','method'=>'POST', 'files'=>true)); ?>
+
+              <?php echo $__env->make('layouts.messages', array('errors' => $errors,
+              'messages' => Session::get('messages')), array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+              <div class="col-md-6">
+                  <input type="hidden" name="_token" value="<?php echo e(csrf_token()); ?>">
+
+                  <div class="form-group">
+                    <?php echo Form::label('supplier_id', 'Selecione a empresa que oferece o produto ou serviço'); ?>
+
+                    <?php echo Form::select('supplier_id', $suppliers, $vo->supplier_id, ['placeholder' => 'Selecione...', 'class'=>'form-control required']);; ?>
+
+                  </div>
+                  <div class="form-group">
+                      <?php echo Form::label('categories', 'Selecione as categorias do seu produto ou serviço'); ?>
+
+                      <table class="table table-bordered">
+                        <tbody>
+                            <?php foreach($categories as $categoryGroup): ?>
+                              <tr>
+                                <?php foreach($categoryGroup as $categoryId => $categoryName): ?>
+                                  <td><?php echo Form::checkbox('categories[]', $categoryId, $vo->categories->contains($categoryId)); ?> <?php echo e($categoryName); ?></td>
+                                <?php endforeach; ?>
+                              </tr>
+                            <?php endforeach; ?>
+                        </tbody>
+                      </table>
+                  </div>
+                  <div class="form-group">
+                      <?php echo Form::label('description', 'Descrição do produto ou serviço'); ?>
+
+                      <?php echo Form::textarea('description', $vo->description, ['placeholder' => 'Descrição', 'class'=>'form-control required']);; ?>
+
+                  </div>
+                    <div class="col-md-12">
+                        <div class="form-group">
+                         <?php echo Form::label('galleries[]', 'Imagens do produto ou serviço'); ?>
+
+                         <?php echo Form::file('galleries[]', ['placeholder' => 'Galleria',
+                         'class'=>'', 'multiple' => 'multiple', 'accept' => 'png|jpe?g']); ?>
+
+                        </div>
+                        <div class="form-group">
+                            <?php
+                             foreach($vo->galleries as $gallery) { ?>
+                            <div class="col-md-2">
+                                <img src="<?php echo $gallery->name != "" ?
+                                    '/uploads/products/'.md5($vo->id).'/'.$gallery->name : 'http://placehold.it/50x50';?>" alt="..." class="img-thumbnail">
+                            </div>
+                            <?php } ?>
+                        </div>
+                    </div>
+              </div>
+            <hr />
+            <div class="col-md-12">
+                <div class="form-group">
+                    <?php echo Form::hidden('id', $vo->id); ?>
+
+                    <a href="/products"
+                                class="btn btn-primary btn-info confirm" >Voltar para a lista</a>
+                    <button type="submit" class="btn btn-primary">
+                        Concluir
+                    </button>
+                </div>
+            </div>
+        <?php echo Form::close(); ?>
+
+        </div>
+    </div>
+
+</section>
+<script type="text/javascript">
+//wizard with options and events
+$("#product-form").validate();
+
+</script>
+<?php $__env->stopSection(); ?>
+
+<?php echo $__env->make('layouts.layout', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

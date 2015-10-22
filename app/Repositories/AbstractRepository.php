@@ -56,11 +56,16 @@ class AbstractRepository implements RepositoryInterface
 
     public function paginate($perPage = 15, $search = null)
     {
-//        return $this->model->where('name', '=', $search)->paginate($perPage);
         return $this->model->queryPagination($perPage, $search);
     }
 
     public function getFillable() {
         return $this->model->getFillable();
+    }
+
+    public function lists($name = 'name', $id = 'id'){
+        // $countries = \App\Models\Country::lists('name','id');
+        return $this->model->lists($name, $id);
+
     }
 }

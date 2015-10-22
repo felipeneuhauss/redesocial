@@ -16,6 +16,7 @@ class CreateSupplierGalleriesTable extends Migration
             $table->increments('id');
             $table->integer('supplier_id')->unsigned();
             $table->integer('gallery_id')->unsigned();
+            $table->dateTime('deleted_at')->nullable();
             $table->timestamps();
         });
         Schema::table('supplier_galleries', function (Blueprint $table) {

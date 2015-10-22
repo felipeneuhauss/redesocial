@@ -9913,3 +9913,7 @@ span.year {
 .datepicker span, td, th {
     cursor:pointer;
 }
+
+.login-panel {
+    background: #fff;border:1px solid #eee;padding:40px 0px;
+}

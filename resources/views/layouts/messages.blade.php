@@ -6,3 +6,11 @@
      @endforeach
 </ul> </div>
 @endif
+@if (isset($messages) && count($messages) > 0)
+ <div class="alert alert-success">
+   <ul class="list-unstyled">
+     @foreach ($messages as $message)
+       <li>{{ $message }}</li>
+     @endforeach
+</ul> </div>
+@endif

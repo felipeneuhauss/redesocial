@@ -8,7 +8,6 @@
 
 namespace App\Repositories\Eloquent;
 
-
 use App\Repositories\AbstractRepository;
 
 class Repository extends AbstractRepository {

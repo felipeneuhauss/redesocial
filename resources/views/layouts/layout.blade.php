@@ -103,8 +103,8 @@
                     <!-- Logo
                     ============================================= -->
                     <div id="logo">
-                        <a href="/index.html" class="standard-logo" data-dark-logo="images/logo/logo-dark.png"><img src="/images/logo/logo.png" alt="Chocolat Logo"></a>
-                        <a href="/index.html" class="retina-logo" data-dark-logo="images/logo/logo-dark-large.png"><img src="/images/logo/logo-large.png" alt="Chocolat Logo"></a>                    </div><!-- #logo end -->
+                        <a href="/" class="standard-logo" data-dark-logo="images/logo/logo-dark.png"><img src="/images/logo/logo.png" alt="Chocolat Logo"></a>
+                        <a href="/" class="retina-logo" data-dark-logo="images/logo/logo-dark-large.png"><img src="/images/logo/logo-large.png" alt="Chocolat Logo"></a>                    </div><!-- #logo end -->
 
                     <!-- Primary Navigation
                     ============================================= -->
@@ -188,7 +188,7 @@
                                     {{--<li><a href="/coming-soon.html"><div>Coming Soon</div></a></li>--}}
                                 {{--</ul>--}}
                             </li>
-                            <li><a href="/#"><div>Fornecedores</div></a>
+                            <li><a href="/suppliers/all-suppliers"><div>Fornecedores</div></a>
                                 {{--<ul>--}}
                                     {{--<li><a href="/portfolio-1.html"><div>Portfolio 1</div></a></li>--}}
                                     {{--<li><a href="/portfolio-2.html"><div>Portfolio 2</div></a></li>--}}
@@ -277,7 +277,7 @@
                                     {{--</ul>--}}
                                 {{--</div>--}}
                             {{--</li>--}}
-                            <li><a href="/#"><div>Contatos</div></a>
+                            <li><a href="/contact"><div>Contato</div></a>
                                 {{--<ul>--}}
                                 	{{--<li><a href="/contact-1.html"><div>Contact 1</div></a></li>--}}
                                 	{{--<li><a href="/contact-2.html"><div>Contact 2</div></a></li>--}}
@@ -286,14 +286,16 @@
                             @if (Auth::guest())
                                 <li><a href="/auth/register"><div>Cadastre-se</div></a>
                                 <li><a href="/auth/login"><div>Login</div></a>
-                                {{--<ul>--}}
-                                	{{--<li><a href="/events-list.html"><div>Events List</div></a></li>--}}
-                                	{{--<li><a href="/events-list-parallax.html"><div>Events Parallax</div></a></li>--}}
-                                    {{--<li><a href="/events-single.html"><div>Events Single</div></a></li>--}}
-                                {{--</ul>--}}
                             </li>
                             @else
-                            <li><a href="/auth/logout"><div>Logout</div></a>
+                            <li><a href="/#"><div>{{Auth::user()->name}}</div></a>
+                            <ul>
+                                <li><a href="/suppliers/form"><div>Cadastrar empresa</div></a></li>
+                                <li><a href="/suppliers"><div>Listar minhas empresas</div></a></li>
+                                <li><a href="/products/form"><div>Cadastrar produto/serviço</div></a></li>
+                                <li><a href="/products"><div>Listar meus produtos/serviços</div></a></li>
+                                <li><a href="/auth/logout"><div>Sair</div></a></li>
+                            </ul>
                             @endif
                         </ul>
                     </nav><!-- #primary-menu end -->
@@ -303,7 +305,9 @@
 
         </header><!-- #header end -->
 
-{{--        @include('layouts.slider')--}}
+        @if (isset($showSlides) && $showSlides)
+            @include('layouts.slider')
+        @endif
 
         <!-- Content
         ============================================= -->

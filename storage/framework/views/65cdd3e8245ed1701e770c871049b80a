@@ -1,0 +1,16 @@
+ <?php if(count($errors) > 0): ?>
+ <div class="alert alert-danger">
+   <ul class="list-unstyled">
+     <?php foreach($errors->all() as $error): ?>
+       <li><?php echo e($error); ?></li>
+     <?php endforeach; ?>
+</ul> </div>
+<?php endif; ?>
+<?php if(isset($messages) && count($messages) > 0): ?>
+ <div class="alert alert-success">
+   <ul class="list-unstyled">
+     <?php foreach($messages as $message): ?>
+       <li><?php echo e($message); ?></li>
+     <?php endforeach; ?>
+</ul> </div>
+<?php endif; ?>

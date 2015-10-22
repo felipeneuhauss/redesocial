@@ -8,35 +8,31 @@
 
 namespace App\Models\Observers;
 
+use Illuminate\Support\Facades\Auth;
 
 class ProductObserver {
     public function saving($model)
     {
-        dump("Saving product");
+        $model->user_id = Auth::user()->id;
     }
 
     public function saved($model)
     {
-        dump("Product saved");
     }
 
     public function updating($model)
     {
-        dump("Updating product");
     }
 
     public function updated($model)
     {
-        dump("Product updated");
     }
 
     public function deleting($model)
     {
-        dump("Deleting product");
     }
 
     public function deleted($model)
     {
-        dump("Product deleted");
     }
 } 

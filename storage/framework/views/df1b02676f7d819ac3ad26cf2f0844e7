@@ -1,0 +1,40 @@
+<?php $__env->startSection('content'); ?>
+<section id="page-title" class="page-title-parallax page-title-dark" style="background-color: #555555; height:127px; padding: 35px 0px;" data-stellar-background-ratio="0.3">
+    <div class="container clearfix">
+        <h1>Recuperar senha</h1>
+        <span>Informe seu email para que possamos te mandar as orientações para você recuperar sua senha</span>
+    </div>
+</section><!-- #page-title end -->
+    <!-- Content
+    ============================================= -->
+<section id="content">
+    <div class="content-wrap bgcolor-grey-light">
+        <div class="container clearfix">
+            <?php echo $__env->make('layouts.messages', array('errors' => $errors,'messages' => Session::get('messages')), array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+            <div class="login-panel">
+
+                <form class="form-horizontal form-validate" role="form" method="POST" action="/password/email">
+                    <input type="hidden" name="_token" value="<?php echo e(csrf_token()); ?>">
+
+                    <div class="form-group">
+                        <label class="col-md-4 control-label">Endereço de E-Mail</label>
+                        <div class="col-md-6">
+                            <input type="email" class="form-control required email" name="email" value="<?php echo e(old('email')); ?>">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-md-6 col-md-offset-4">
+                            <button type="submit" class="btn btn-primary">
+                                Receber link para atualizar a senha
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+<?php $__env->stopSection(); ?>
+
+<?php echo $__env->make('layouts.layout', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

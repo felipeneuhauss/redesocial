@@ -3,7 +3,15 @@ function setMasks() {
     $('.form-validate').validate();
 
     $('body').delegate('.delete' , 'click' , function(){
-        return confirm('Deseja realmente excluir o registro?');
+        var href = $(this).parents('a').attr('href');
+        var _this = $(this);
+        if (confirm('Deseja realmente excluir o registro?')) {
+            $.get(href, function(data) {
+                messageAlert(data.message, data.type);
+                _this.parents('tr').remove();
+            });
+        }
+        return false;
     });
 
     $('body').delegate('.confirm' , 'click' , function(){
@@ -366,7 +374,7 @@ function reviewRequiredFields() {
     });
 }
 
-//reviewRequiredFields();
+reviewRequiredFields();
 
 function ajaxFormInit(formId, resetForm, postSuccess) {
     $(formId).validate();
@@ -411,8 +419,28 @@ function ajaxFormInit(formId, resetForm, postSuccess) {
  * @param type
  */
 var messageAlert = function(message, type) {
-    $('#message-container').html("<div class='alert alert-"+type+"'>"+
-        message+
+
+    var alertMessage = '';
+    switch (type) {
+        case 'success':
+            alertMessage = 'Tudo certo! ';
+            break;
+        case 'warning':
+            alertMessage = 'Opa! ';
+            break;
+        case 'danger':
+            alertMessage = 'Ops! ';
+            break;
+        case 'info':
+            alertMessage = 'Atenção! ';
+            break;
+    }
+
+    $('#footer').append("<div id='message-buttom-right' style='bottom: 0;position: fixed;right: 5px;'>"+
+    "<div role='alert' class='alert alert-"+type+" alert-dismissible fade in'>"+
+    "<button aria-label='Close' data-dismiss='alert' class='close' type='button'><span aria-hidden='true'>×</span></button>"+
+    "<strong>"+alertMessage+"</strong>"+message+
+    "</div>"+
     "</div>");
 
     $(".alert").slideDown('slow');

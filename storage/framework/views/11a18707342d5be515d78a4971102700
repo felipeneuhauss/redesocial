@@ -1,0 +1,5 @@
+<div><i>
+    <?php echo e($data['message']); ?>
+
+    </i>
+</div>

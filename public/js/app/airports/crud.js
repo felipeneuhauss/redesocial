@@ -43,6 +43,3 @@ app.controller('AirportController', ['$http', '$scope', '$compile', function($ht
     }
 
 }]);
-
-
-

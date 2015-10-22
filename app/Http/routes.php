@@ -12,8 +12,10 @@
 */
 
 Route::get('/', 'Index\HomeController@index');
+Route::match(array('GET', 'POST'), '/contact', 'Index\HomeController@contact');
+Route::match(array('GET', 'POST'), '/send-contact-mail', 'Index\HomeController@sendContactMail');
 Route::get('/home', function(){
-    return view('index.home');
+    return view('index.home', ['showSlides' => true]);
 });
 
 
@@ -71,10 +73,42 @@ Route::group(['prefix' => 'suppliers'], function () {
 
     Route::get('', 'Supplier\SupplierController@index');
     Route::get('list', 'Supplier\SupplierController@getAll');
+    Route::get('all-suppliers', 'Supplier\SupplierController@allSuppliers');
     Route::get('detail/{id?}', 'Supplier\SupplierController@detail')->where('id', '[0-9]+');
     Route::get('remove/{id?}',
         array(
             'uses' => 'Supplier\SupplierController@remove'
+        )
+    )->where('id', '[0-9]+');
+});
+
+
+Route::group(['prefix' => 'categories'], function () {
+    Route::match(array('GET' , 'POST'),'form/{id?}', 'Category\CategoryController@form')
+        ->where('id', '[0-9]+');
+
+    Route::get('', 'Category\CategoryController@index');
+    Route::get('list', 'Category\CategoryController@getAll');
+    Route::get('export-pairs', 'Category\CategoryController@exportPairs');
+    Route::get('detail/{id?}', 'Category\CategoryController@detail')->where('id', '[0-9]+');
+    Route::get('remove/{id?}',
+        array(
+            'uses' => 'Category\CategoryController@remove'
+        )
+    )->where('id', '[0-9]+');
+});
+
+Route::group(['prefix' => 'products'], function () {
+    Route::match(array('GET' , 'POST'),'form/{id?}', 'Product\ProductController@form')
+        ->where('id', '[0-9]+');
+
+    Route::get('', 'Product\ProductController@index');
+    Route::get('list', 'Product\ProductController@getAll');
+    Route::get('export-pairs', 'Product\ProductController@exportPairs');
+    Route::get('detail/{id?}', 'Product\ProductController@detail')->where('id', '[0-9]+');
+    Route::get('remove/{id?}',
+        array(
+            'uses' => 'Product\ProductController@remove'
         )
     )->where('id', '[0-9]+');
 });

@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+
 use Request;
 
 /**
@@ -12,7 +13,7 @@ use Request;
 abstract class AjaxController extends Controller
 {
     /**
-     * @var \App\Repositories\AbstractRepository.php
+     * @var App\Repositories\Redbean\Repository.php
      */
     protected $repository;
     protected $viewFolderName = '';
@@ -26,13 +27,11 @@ abstract class AjaxController extends Controller
     }
 
     public function getAll() {
+        return $this->repository->getAll();
+    }
 
-        if (Request::input('search') != "") {
-            $result = $this->repository->where("value", 'LIKE', '%'. Request::input('search'). '%')->paginate(15);
-        } else {
-            $result = $this->repository->paginate(20);
-        }
-        return $result;
+    public function exportPairs(){
+        return $this->repository->lists('name','id');
     }
 
     /**
@@ -52,6 +51,7 @@ abstract class AjaxController extends Controller
             }
 
             $vo->save();
+            $this->_postSave($vo);
 
             return $vo;
         }
@@ -83,17 +83,24 @@ abstract class AjaxController extends Controller
         return array('success' => false, 'type' => 'error', 'message' => 'Registro não removido. Informe o ID');
     }
 
-    protected function _formatFileName($functionName) {
-        return $functionName;
-    }
-
     /**
-     * @param Request $request
+     * Validate data request
+     *
      * @return mixed
      */
     public function _validate()
     {
         return Validator::make(Request::all(), [], []);
+    }
+
+    /**
+     * Post save function to execute other process depending of vo
+     *
+     * @param $vo
+     * @return mixed
+     */
+    protected function _postSave($vo) {
+        return $vo;
     }
 
 }

@@ -13,8 +13,6 @@ use App\Models\Gallery;
 use App\Models\Supplier;
 use App\Models\SupplierGallery;
 use App\Repositories\Eloquent\Repository;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Intervention\Image\Facades\Image;
 use Request;
@@ -23,8 +21,23 @@ class SupplierController extends AppController {
 
     public function __construct() {
         parent::__construct();
+        $this->middleware('auth', ['only' => ['form', 'index']]);
         $this->repository = new Repository(new Supplier());
         $this->viewFolderName = 'suppliers';
+    }
+
+    public function allSuppliers() {
+
+        $search = '';
+        if (Request::input('search') != "" ) {
+            $search = Request::input('search');
+            $result = $this->repository->paginate(10, $search);
+        } else {
+            $result = $this->repository->paginate(10);
+        }
+
+        return view($this->viewFolderName.'.all-suppliers')
+            ->with('data', $result)->with('search', $search);
     }
 
     /**
@@ -39,9 +52,10 @@ class SupplierController extends AppController {
             'fantasy_name'          => 'required|max:255',
             'social_name'           => 'required|max:255',
             'cnpj'                  => 'required',
-            'representative_name'   => 'required|max:20',
+            'representative_name'   => 'required|max:250',
             'representative_cpf'    => 'required|max:14',
             'email'                 => 'required|email|max:255|unique:users',
+            'link'                  => 'max:150|unique:suppliers',
             'zip_code'              => 'required|min:9',
             'phone_one'             => 'min:8',
             'representative_phone'  => 'required|min:8',
@@ -67,6 +81,9 @@ class SupplierController extends AppController {
             'zip_code.required'              => 'O campo CEP é obrigatório.',
             'representative_phone.required'  => 'O campo Telefone do representante legal é obrigatório.',
             'representative_phone.min'       => 'O campo Telefone do representante legal deve ter no mínimo 8 digitos.',
+            'link.required'                  => 'O campo Link é obrigatório.',
+            'link.unique'                    => 'O valor informado no campo "Link" já está em uso por outro fornecedor.',
+            'link.max'                       => 'O valor informado no campo "Link" deve ter no máximo 150 caracteres.',
             'phone.min'                      => 'O campo Telefone deve ter no mínimo 8 digitos.',
             'phone_one.min'                  => 'O campo Telefone principal da empresa deve ter no mínimo 8 digitos.',
             'address.max'                    => 'O campo Endereço deve ter no máximo 255 caracteres.',
@@ -86,10 +103,6 @@ class SupplierController extends AppController {
 
     protected function _initForm($vo = null)
     {
-        if (Auth::user()) {
-            $vo = Supplier::where('user_id', Auth::user()->id)->first();
-        }
-
         $countries = \App\Models\Country::lists('name','id');
 
         return array('vo' => $vo, 'countries' => $countries);

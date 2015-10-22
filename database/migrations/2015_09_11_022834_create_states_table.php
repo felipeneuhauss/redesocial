@@ -12,7 +12,7 @@ class CreateStatesTable extends Migration
      */
     public function up()
     {
-        Schema::create('states', function (Blueprint $table) {
+        Schema::create('state', function (Blueprint $table) {
             $table->increments('id');
             $table->string('sgl', 10);
             $table->string('name', 50);
@@ -27,6 +27,6 @@ class CreateStatesTable extends Migration
      */
     public function down()
     {
-        Schema::drop('states');
+        Schema::drop('state');
     }
 }

@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+use Illuminate\Session;
 use Request;
 
 /**
@@ -21,7 +22,6 @@ abstract class AppController extends Controller
     }
 
     public function index() {
-
         $search = '';
         if (Request::input('search') != "" ) {
             $search = Request::input('search');
@@ -39,7 +39,6 @@ abstract class AppController extends Controller
      * @return $this
      */
     public function form($id = null) {
-
         if (is_null($id)) {
             $id = Request::input('id') == null || Request::input('id') == '' ? null : Request::input('id');
         }
@@ -60,6 +59,8 @@ abstract class AppController extends Controller
 
             $vo->save();
             $this->_postSave($vo);
+
+            \Session::flash('messages', array('Registro salvo com sucesso!'));
         }
 
         return view($this->viewFolderName.'.'.$this->_formatFileName(__FUNCTION__), $this->_initForm($vo));
@@ -73,20 +74,22 @@ abstract class AppController extends Controller
                 return "Objeto não encontrado";
             }
 
-            return view($this->viewFolderName.'.'.$this->_formatFileName(__FUNCTION__))->with('vo', $vo);
+            return view($this->viewFolderName.'.'.$this->_formatFileName(__FUNCTION__), $this->_initForm($vo));
         } else {
             return "Objeto não existe";
         }
     }
 
     public function remove($id) {
-
         if ($id) {
             $vo = $this->repository->find($id);
-            $vo->delete();
-            return array('success' => true, 'message' => 'Registro removido com sucesso');
+            if ($vo) {
+                $vo->delete();
+                return array('success' => true, 'message' => 'Registro removido com sucesso', 'type' => 'success');
+            }
+            return array('success' => false, 'message' => 'Registro não encontrado ou já removido' , 'type' => 'warning');
         }
-        return array('success' => false, 'message' => 'Registro removido com sucesso');
+        return array('success' => false, 'message' => 'Registro não encontrado', 'type' => 'warning');
     }
 
     protected function _formatFileName($functionName) {
@@ -94,7 +97,8 @@ abstract class AppController extends Controller
     }
 
     /**
-     * @param Request $request
+     * Validate data request
+     *
      * @return mixed
      */
     public function _validate()
@@ -103,6 +107,7 @@ abstract class AppController extends Controller
     }
 
     /**
+     * Prepeare variables form
      *
      * @param mix $vo
      * @return array
@@ -111,6 +116,12 @@ abstract class AppController extends Controller
         return array('vo' => $vo);
     }
 
+    /**
+     * Post save function to execute other process depending of vo
+     *
+     * @param $vo
+     * @return mixed
+     */
     protected function _postSave($vo) {
         return $vo;
     }

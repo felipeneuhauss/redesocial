@@ -357,19 +357,19 @@ function sm_format_twitter2(twitters) {
   return statusHTML.join('');
 }
 
-//function sm_format_twitter3(twitters) {
-//  var statusHTML = [];
-//  for (var i=0; i<twitters.length; i++){
-//    var username = twitters[i].user.screen_name;
-//    var status = twitters[i].text.replace(/((https?|s?ftp|ssh)\:\/\/[^"\s\<\>]*[^.,;'">\:\s\<\>\)\]\!])/g, function(url) {
-//      return '<a href="'+url+'" target="_blank">'+url+'</a>';
-//    }).replace(/\B@([_a-z0-9]+)/ig, function(reply) {
-//      return  reply.charAt(0)+'<a href="http://twitter.com/'+reply.substring(1)+'" target="_blank">'+reply.substring(1)+'</a>';
-//    });
-//    statusHTML.push('<div class="slide"><div class="testi-content"><p>'+status+'</p><div class="testi-meta"><span><a href="http://twitter.com/'+username+'/statuses/'+twitters[i].id_str+'" target="_blank">'+relative_time(twitters[i].created_at)+'</a></span></div></div></div>');
-//  }
-//  return statusHTML.join('');
-//}
+function sm_format_twitter3(twitters) {
+  var statusHTML = [];
+  for (var i=0; i<twitters.length; i++){
+    var username = twitters[i].user.screen_name;
+    var status = twitters[i].text.replace(/((https?|s?ftp|ssh)\:\/\/[^"\s\<\>]*[^.,;'">\:\s\<\>\)\]\!])/g, function(url) {
+      return '<a href="'+url+'" target="_blank">'+url+'</a>';
+    }).replace(/\B@([_a-z0-9]+)/ig, function(reply) {
+      return  reply.charAt(0)+'<a href="http://twitter.com/'+reply.substring(1)+'" target="_blank">'+reply.substring(1)+'</a>';
+    });
+    statusHTML.push('<div class="slide"><div class="testi-content"><p>'+status+'</p><div class="testi-meta"><span><a href="http://twitter.com/'+username+'/statuses/'+twitters[i].id_str+'" target="_blank">'+relative_time(twitters[i].created_at)+'</a></span></div></div></div>');
+  }
+  return statusHTML.join('');
+}
 
 function relative_time(time_value) {
   var values = time_value.split(" ");

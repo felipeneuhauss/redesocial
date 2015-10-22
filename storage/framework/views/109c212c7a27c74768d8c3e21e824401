@@ -1,0 +1,284 @@
+<?php $__env->startSection('content'); ?>
+<section id="page-title" class="page-title-parallax page-title-dark" style="background-color: #555555; height:127px; padding: 40px 0px;" data-stellar-background-ratio="0.3">
+    <div class="container clearfix">
+        <h1>Nova empresa</h1>
+        <span></span>
+    </div>
+</section><!-- #page-title end -->
+    <!-- Content
+    ============================================= -->
+<section id="content">
+    <div class="content-wrap bgcolor-grey-light">
+        <div class="container clearfix">
+            <?php echo Form::open(array('id'=>'supplier-form', 'url'=>'/suppliers/form','method'=>'POST', 'files'=>true)); ?>
+
+            <div id="rootwizard">
+                <ul>
+                    <li><a href="#tab1" data-toggle="tab"><span class="label">1º</span> Passo</a></li>
+                    <li><a href="#tab2" data-toggle="tab"><span class="label">2º</span> Passo</a></li>
+                </ul>
+                <hr />
+                <div class="tab-content">
+                    <div class="tab-pane" id="tab1">
+                      <div class="row">
+
+                          <?php echo $__env->make('layouts.messages', array('errors' => $errors,
+                          'messages' => Session::get('messages')), array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+                          <div class="col-md-6">
+                              <input type="hidden" name="_token" value="<?php echo e(csrf_token()); ?>">
+
+                              <div class="form-group">
+                                  <?php echo Form::label('fantasy_name', 'Nome fantasia'); ?>
+
+                                  <?php echo Form::text('fantasy_name', $vo->fantasy_name, ['placeholder' => 'Nome fantasia', 'class'=>'form-control required']);; ?>
+
+                              </div>
+                              <div class="form-group">
+                                  <?php echo Form::label('social_name', 'Razão social'); ?>
+
+                                  <?php echo Form::text('social_name', $vo->social_name, ['placeholder' => 'Nome fantasia', 'class'=>'form-control required']);; ?>
+
+                              </div>
+                              <div class="form-group">
+                                  <?php echo Form::label('cnpj', 'CNPJ'); ?>
+
+                                  <?php echo Form::text('cnpj', $vo->cnpj, ['placeholder' => 'Número do CNPJ', 'class'=>'form-control required cnpj']);; ?>
+
+                              </div>
+                              <div class="form-group">
+                                  <?php echo Form::label('email', 'E-mail da empresa'); ?>
+
+                                  <?php echo Form::text('email', $vo->email, ['placeholder' => 'E-mail da empresa', 'class'=>'form-control required email']);; ?>
+
+                              </div>
+                              <div class="form-group">
+                                  <?php echo Form::label('representative_name', 'Representante legal'); ?>
+
+                                  <?php echo Form::text('representative_name', $vo->representative_name, ['placeholder' => 'Nome do representante', 'class'=>'form-control required']);; ?>
+
+                              </div>
+                              <div class="form-group">
+                                  <?php echo Form::label('representative_cpf', 'CPF Representante legal'); ?>
+
+                                  <?php echo Form::text('representative_cpf', $vo->representative_cpf, ['placeholder' => 'CPF do representante', 'class'=>'form-control required cpf']);; ?>
+
+                              </div>
+                              <div class="form-group">
+                                  <?php echo Form::label('representative_phone', 'Telefone do representante legal'); ?>
+
+                                  <?php echo Form::text('representative_phone', $vo->representative_phone, ['placeholder' => 'Telefone do representante', 'class'=>'form-control required phone']);; ?>
+
+                              </div>
+                               <div class="form-group">
+                                    <?php echo Form::label('description', 'Descrição da empresa'); ?>
+
+                                    <?php echo Form::textarea('description', $vo->description, ['placeholder' => 'Descrição', 'class'=>'form-control']);; ?>
+
+                                </div>
+                          </div>
+                          <div class="col-md-6">
+                              <div class="form-group foreign">
+                                  <?php echo Form::label('country', 'País'); ?>
+
+                                  <?php echo Form::select('country', $countries, $vo->country, ['placeholder' => 'Selecione...', 'class'=>'form-control required']);; ?>
+
+                              </div>
+                              <div class="form-group">
+                                  <?php echo Form::label('zip_code', 'CEP'); ?>
+
+                                  <?php echo Form::text('zip_code', $vo->zip_code, ['placeholder' => 'CEP', 'class'=>'form-control required cep zip_code']);; ?>
+
+                              </div>
+                              <div class="form-group">
+                                 <?php echo Form::label('state', 'Estado'); ?>
+
+                                 <?php echo Form::text('state', $vo->state, ['placeholder' => 'Estado', 'class'=>'form-control required']);; ?>
+
+                              </div>
+                              <div class="form-group">
+                                 <?php echo Form::label('city', 'Cidade'); ?>
+
+                                 <?php echo Form::text('city', $vo->city, ['placeholder' => 'Cidade', 'class'=>'form-control required']);; ?>
+
+                              </div>
+                              <div class="form-group">
+                                 <?php echo Form::label('district', 'Bairro'); ?>
+
+                                 <?php echo Form::text('district', $vo->district, ['placeholder' => 'Bairro', 'class'=>'form-control required']);; ?>
+
+                              </div>
+                              <div class="form-group">
+                                 <?php echo Form::label('address', 'Endereço'); ?>
+
+                                 <?php echo Form::text('address', $vo->address, ['placeholder' => 'Endereço', 'class'=>'form-control required']);; ?>
+
+                              </div>
+
+                              <div class="form-group">
+                                 <?php echo Form::label('number', 'Número'); ?>
+
+                                 <?php echo Form::text('number', $vo->number, ['placeholder' => 'Número', 'class'=>'form-control required']);; ?>
+
+                              </div>
+                              <div class="form-group">
+                                 <?php echo Form::label('complement', 'Complemento'); ?>
+
+                                 <?php echo Form::text('complement', $vo->complement, ['placeholder' => 'Complemento', 'class'=>'form-control']);; ?>
+
+                              </div>
+
+                          </div>
+                          <div class="col-md-12">
+                              <div class="checkbox">
+                                  <label>
+                                 <?php echo Form::checkbox('term_read', '1', $vo->term_read);; ?> Aceito os termos de uso da UP Evento
+                                  </label>
+                              </div>
+                          </div>
+                        </div>
+                    </div>
+                    <div class="tab-pane" id="tab2">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                             <?php echo Form::label('brand_image', 'Marca da empresa'); ?>
+
+                             <?php echo Form::file('brand_image');; ?>
+
+                            </div>
+                            <div class="form-group">
+                             <?php echo Form::label('link', 'Link personalizado'); ?>
+
+                             <?php if(!$vo->id): ?>
+                                http://www.upevento.com.br/
+                                <?php echo Form::text('link', $vo->link, ['placeholder' => 'Link', 'class'=>'form-control required']);; ?>
+
+                             <?php else: ?>
+                                http://www.upevento.com.br/<strong><?php echo e($vo->link); ?></strong>
+                             <?php endif; ?>
+                            </div>
+                            <div class="form-group">
+                              <?php echo Form::label('phone_one', 'Telefone principal'); ?>
+
+                              <?php echo Form::text('phone_one', $vo->phone_one, ['placeholder' => 'Telefone principal', 'class'=>'form-control required phone']);; ?>
+
+                            </div>
+                            <div class="form-group">
+                              <?php echo Form::label('phone_two', 'Telefone secundário'); ?>
+
+                              <?php echo Form::text('phone_two', $vo->phone_two, ['placeholder' => 'Telefone secundário', 'class'=>'form-control phone']);; ?>
+
+                            </div>
+                            <div class="form-group">
+                             <?php echo Form::label('site', 'Site da empresa'); ?>
+
+                             <?php echo Form::text('site', $vo->site, ['placeholder' => 'Site', 'class'=>'form-control']);; ?>
+
+                            </div>
+                            <div class="form-group">
+                             <?php echo Form::label('facebook', 'Facebook'); ?>
+
+                             <?php echo Form::text('facebook', $vo->facebook, ['placeholder' => 'Facebook', 'class'=>'form-control']);; ?>
+
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <?php echo Form::label('preview', 'Pré-visualização da marca da empresa'); ?><br />
+                                <img src="<?php echo $vo->brand_image != "" ?
+                                '/uploads/brands/'.$vo->brand_image : 'http://placehold.it/100x100';?>" alt="..." class="img-thumbnail">
+                            </div>
+                            <div class="form-group">
+                             <?php echo Form::label('instagram', 'Instagram'); ?>
+
+                             <?php echo Form::text('instagram', $vo->instagram, ['placeholder' => 'Instagram', 'class'=>'form-control']); ?>
+
+                            </div>
+                            <div class="form-group">
+                             <?php echo Form::label('twitter', 'Twitter'); ?>
+
+                             <?php echo Form::text('twitter', $vo->twitter, ['placeholder' => 'twitter', 'class'=>'form-control']);; ?>
+
+                            </div>
+                            <div class="form-group">
+                             <?php echo Form::label('youtube', 'Youtube'); ?>
+
+                             <?php echo Form::text('youtube', $vo->youtube, ['placeholder' => 'Youtube', 'class'=>'form-control']);; ?>
+
+                            </div>
+                            <div class="form-group">
+                             <?php echo Form::label('linkedin', 'Linkedin'); ?>
+
+                             <?php echo Form::text('linkedin', $vo->linkedin, ['placeholder' => 'Linkedin', 'class'=>'form-control']);; ?>
+
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="form-group">
+                             <?php echo Form::label('galleries[]', 'Imagens da empresa'); ?>
+
+                             <?php echo Form::file('galleries[]', ['placeholder' => 'Galleria',
+                             'class'=>'', 'multiple' => 'multiple', 'accept' => 'png|jpe?g' ]); ?>
+
+                            </div>
+                            <div class="form-group">
+                                <?php
+                                 foreach($vo->galleries as $gallery) { ?>
+                                    <div class="col-md-2">
+                                        <img src="<?php echo $gallery->name != "" ?
+                                            '/uploads/galleries/'.md5($vo->id).'/'.$gallery->name : 'http://placehold.it/50x50';?>" alt="..." class="img-thumbnail">
+                                    </div>
+                                <?php } ?>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <?php echo Form::hidden('id', $vo->id); ?>
+
+                                <a href="/suppliers"
+                                            class="btn btn-primary btn-info confirm" >Voltar para a lista</a>
+                                <button type="submit" class="btn btn-primary">
+                                    Concluir
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <ul class="pager wizard">
+                        <li class="previous first" style="display:none;"><a href="#" class="btn">Voltar</a></li>
+                        <li class="previous"><a href="#" class="btn btn">Voltar</a></li>
+                        <li class="next last" style="display:none;"><a href="#" class="btn">Próximo</a></li>
+                        <li class="next"><a href="#" class="btn">Próximo</a></li>
+                    </ul>
+                </div>
+            </div>
+            <?php echo Form::close(); ?>
+
+        </div>
+    </div>
+</section>
+<link rel="stylesheet" href="/js/plugins/wizard/custom.css" type="text/css" />
+<script src="/js/plugins/wizard/jquery.bootstrap.wizard.min.js"></script>
+<script type="text/javascript">
+//wizard with options and events
+$("#supplier-form").validate({
+    messages: {
+        email:{
+            required: 'Campo obrigatório.',
+            remote: 'O e-mail informado já está sendo usado no sistema. <br />Por favor, informe outro e-mail.',
+            email:'Informe um e-mail válido.'
+        }
+    }
+});
+
+$(document).ready(function() {
+    $('#rootwizard').bootstrapWizard({
+        tabClass: 'nav nav-pills',
+        onNext: function(tab, navigation, index) {
+            return $("#supplier-form").valid() ? true : false;
+        }
+  });
+});
+
+</script>
+<?php $__env->stopSection(); ?>
+
+<?php echo $__env->make('layouts.layout', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

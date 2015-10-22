@@ -15,11 +15,15 @@ class CreateProductsTable extends Migration
         Schema::create('products', function (Blueprint $table) {
             $table->increments('id');
             $table->text('description');
+            $table->integer('supplier_id')->unsigned();
+            $table->integer('user_id')->unsigned();
+            $table->date('deleted_at')->nulabble();
             $table->timestamps();
         });
 
         Schema::table('products', function (Blueprint $table) {
-            $table->date('deleted_at')->nulabble()->change();
+            $table->foreign('supplier_id')->references('id')->on('suppliers');
+            $table->foreign('user_id')->references('id')->on('users');
         });
     }
 

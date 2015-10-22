@@ -4,9 +4,9 @@
     <h3>Meus fornecedores</h3>
     <hr />
   <?php
-  if (old('nome')): ?>
+  if (old('fantasy_name')): ?>
        <div class="alert alert-success">
-           <strong>Sucesso!</strong> O Fornecedor {{old('name')}} foi adicionado.
+           <strong>Sucesso!</strong> O Fornecedor {{old('fantasy_name')}} foi adicionado.
        </div>
     <?php endif ?>
     <div class="row">
@@ -28,18 +28,20 @@
     <hr />
     <table class="table table-striped
                   table-bordered table-hover">
-        <?php foreach ($data as $vo): ?> <tr>
-        <td><?= $vo->id ?></td>
-        <td><?= $vo->cnpj ?></td>
-        <td><?= $vo->fantasy_name ?></td>
-        <td><?= $vo->social_name ?></td>
-        <td><a href="/suppliers/remove/<?= $vo->id; ?>">
-              <span class="icon-trash delete"></span>
-        </a></td>
-        <td><a href="/suppliers/form/<?= $vo->id; ?>">
-          <span class="icon-edit"></span>
-        </a></td>
-        </tr>
+        <?php foreach ($data as $vo): ?>
+         <?php if (Auth::user()->id == $vo->user_id && $vo->deleted_at == "") :?>
+                <tr>
+                <td><?= $vo->cnpj ?></td>
+                <td><?= $vo->fantasy_name ?></td>
+                <td><?= $vo->social_name ?></td>
+                <td><a href="/suppliers/remove/<?= $vo->id; ?>">
+                      <span class="icon-trash delete"></span>
+                </a></td>
+                <td><a href="/suppliers/form/<?= $vo->id; ?>">
+                  <span class="icon-edit"></span>
+                </a></td>
+                </tr>
+            <?php endif; ?>
         <?php endforeach ?>
     </table>
     <div class="row center">

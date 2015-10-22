@@ -20,6 +20,7 @@ class CreateSuppliersTable extends Migration
             $table->string('representative_name',150);
             $table->string('representative_cpf',15);
             $table->string('representative_phone',15);
+            $table->text('description')->nullable();
             $table->string('email');
             $table->string('zip_code',10);
             $table->string('address',255);
@@ -40,6 +41,7 @@ class CreateSuppliersTable extends Migration
             $table->string('brand_image',255);
             $table->string('youtube');
             $table->integer('user_id')->unsigned();
+            $table->dateTime('deleted_at')->nullable();
             $table->timestamps();
         });
 

@@ -14,12 +14,20 @@ class Product extends Model implements ModelInterface
 
     protected $table = 'products';
 
-    protected $fillable = ['description'];
+    protected $fillable = ['description', 'category_id', 'supplier_id'];
 
     protected $guarded = ['id'];
 
+    public function supplier() {
+        return $this->belongsTo('App\Models\Supplier');
+    }
+
     public function categories() {
         return $this->belongsToMany('\App\Models\Category', 'product_categories');
+    }
+
+    public function galleries() {
+        return $this->belongsToMany('\App\Models\Gallery', 'product_galleries');
     }
 
     public static function boot() {
@@ -30,6 +38,9 @@ class Product extends Model implements ModelInterface
 
     public function queryPagination($perPage = 15, $search)
     {
-        // TODO: Implement queryPagination() method.
+        $result = $this->where('description', 'like', '%'.$search.'%')
+            ->paginate($perPage);
+
+        return $result;
     }
 }

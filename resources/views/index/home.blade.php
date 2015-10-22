@@ -5,16 +5,16 @@
                 <!-- Promo -->
                 <div class="promo promo-light promo-full header-stick nobottommargin">
                     <div class="container clearfix">
-                        <h3>Call us today @ <span class="color">(341) 457 432678</span> or Email us <span class="color">info@chocolat.com</span></h3>
-                        <span>Chocolat is a Responsive Bootstrap 3 Compatible Theme with Endless Customization Possibilities</span>
-                        <a href="#" class="button button-light bgcolor-grey-light button-rounded button-reveal button-large button-3d tright"><i class="icon-angle-right"></i><span>Reservations</span></a>
+                        <h3>Cadastre-se e conheça as melhores empresas para seu evento <span class="color">empresarial</span></h3>
+                        <span>Empresas qualificadas para que seu evento seja um sucesso!</span>
+                        <a href="/auth/register" class="button button-light bgcolor-grey-light button-rounded button-reveal button-large button-3d tright"><i class="icon-angle-right"></i><span>Cadastre-se</span></a>
                    </div>
        	  	  	</div><!-- End Promo -->
 
           		<div class="section bgcolor-grey-light notopmargin noborder nobottommargin">
                     <div class="container clearfix">
                         <div class="col_half nobottommargin center">
-                            <img src="http://placehold.it/800x580" alt="" data-animate="fadeInUp">
+                            <a href="/suppliers/form"><img src="/images/site/be_a_supplier.jpg" alt="" data-animate="fadeInUp"></a>
                         </div>
                         <div class="col_half nobottommargin col_last">
                             <div class="heading-block" style="padding-top: 40px;">
@@ -244,23 +244,23 @@
 
                 <div class="clear"></div>
 
-                <a class="button button-light button-full button center tright nobottommargin">
-                    <div class="container clearfix">
-                        Responsive Bootstrap 3 Compatible Theme with Endless Customization Possibilities. <strong>View Our Gallery</strong>
-                        <i class="icon-chevron-right" style="top:2px;"></i>
-                    </div>
-           	  	</a>
+                {{--<a class="button button-light button-full button center tright nobottommargin">--}}
+                    {{--<div class="container clearfix">--}}
+                        {{--Responsive Bootstrap 3 Compatible Theme with Endless Customization Possibilities. <strong>View Our Gallery</strong>--}}
+                        {{--<i class="icon-chevron-right" style="top:2px;"></i>--}}
+                    {{--</div>--}}
+           	  	{{--</a>--}}
 
-			  	<div class="section parallax notopmargin nobottommargin notopborder dark" style="background-image: url('http://placehold.it/2000x1333');
-              padding: 220px 0;" data-stellar-background-ratio="0.3">
-                    <div class="container vertical-middle center clearfix">
-                        <div class="emphasis-title heading-block">
-                            <h3 style="font-size: 36px;" data-animate="fadeInDown">See Our Complete Dinner & Breakfast Menu</h3>
-                            <span>Chocolat is a Responsive Bootstrap 3 Compatible Theme with Endless Customization Possibilities</span>
-                        </div>
-                        <a href="#" class="button button-medium button-reveal button-3d button-rounded tright nomargin" style="color:#FFF" data-animate="fadeInUp"><span>Full Menu</span> <i class="icon-angle-right"></i></a> <a href="#" class="button button-medium button-reveal button-3d button-rounded tright nomargin" style="color:#FFF" data-animate="fadeInUp"><span>Reservations</span> <i class="icon-angle-right"></i></a>
-                   </div>
-              </div>
+			  	{{--<div class="section parallax notopmargin nobottommargin notopborder dark" style="background-image: url('http://placehold.it/2000x1333');--}}
+              {{--padding: 220px 0;" data-stellar-background-ratio="0.3">--}}
+                    {{--<div class="container vertical-middle center clearfix">--}}
+                        {{--<div class="emphasis-title heading-block">--}}
+                            {{--<h3 style="font-size: 36px;" data-animate="fadeInDown">See Our Complete Dinner & Breakfast Menu</h3>--}}
+                            {{--<span>Chocolat is a Responsive Bootstrap 3 Compatible Theme with Endless Customization Possibilities</span>--}}
+                        {{--</div>--}}
+                        {{--<a href="#" class="button button-medium button-reveal button-3d button-rounded tright nomargin" style="color:#FFF" data-animate="fadeInUp"><span>Full Menu</span> <i class="icon-angle-right"></i></a> <a href="#" class="button button-medium button-reveal button-3d button-rounded tright nomargin" style="color:#FFF" data-animate="fadeInUp"><span>Reservations</span> <i class="icon-angle-right"></i></a>--}}
+                   {{--</div>--}}
+              {{--</div>--}}
 
 			  <div class="section nobottommargin notopmargin nobg">
                 <div class="container clearfix">
@@ -409,7 +409,7 @@
                     </div>
            	  	</div>
 
-          		<div class="section parallax noborder footer-stick notopmargin" style="background-image: url('http://placehold.it/2000x1333');
+          		<div class="section parallax noborder footer-stick notopmargin" style="background-image: url('/images/site/twitter.jpg');
                 padding: 110px 0 110px 0;" data-stellar-background-ratio="0.3">
                     <div class="container clearfix">
                         <div class="col_full nobottommargin">
