@@ -15,6 +15,8 @@ class Kernel extends ConsoleKernel
     protected $commands = [
         \App\Console\Commands\Inspire::class,
         \App\Console\Commands\SimpleCrudCreator::class,
+        \App\Console\Commands\CustomizeModel::class,
+        \App\Console\Commands\GenerateValidation::class,
     ];
 
     /**

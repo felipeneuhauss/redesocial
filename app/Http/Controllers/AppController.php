@@ -45,25 +45,25 @@ abstract class AppController extends Controller
 
         $vo = $this->repository->findOrNew($id);
 
+        $validator = array();
+
         if (Request::isMethod('post'))
         {
             $validator = $this->_validate();
 
             $vo->fill(Request::all());
 
-            if ($validator->fails()) {
-                return view($this->viewFolderName.'.'.$this->_formatFileName(__FUNCTION__),
-                    $this->_initForm($vo))
-                    ->withErrors($validator);
+            if (!$validator->fails()) {
+                $this->_preSave($vo);
+                $vo->save();
+                $this->_postSave($vo);
+
+                \Session::flash('messages', array('Registro salvo com sucesso!'));
             }
-
-            $vo->save();
-            $this->_postSave($vo);
-
-            \Session::flash('messages', array('Registro salvo com sucesso!'));
         }
 
-        return view($this->viewFolderName.'.'.$this->_formatFileName(__FUNCTION__), $this->_initForm($vo));
+        return view($this->viewFolderName.'.'.$this->_formatFileName(__FUNCTION__), $this->_initForm($vo))
+            ->withErrors($validator);
     }
 
     public function detail($id) {
@@ -88,6 +88,17 @@ abstract class AppController extends Controller
                 return array('success' => true, 'message' => 'Registro removido com sucesso', 'type' => 'success');
             }
             return array('success' => false, 'message' => 'Registro não encontrado ou já removido' , 'type' => 'warning');
+        }
+        return array('success' => false, 'message' => 'Registro não encontrado', 'type' => 'warning');
+    }
+
+    public function exportPairs($column, $id) {
+        if ($id) {
+            $result = $this->repository->lists('name', 'id', $column, $id);
+            if ($result) {
+                return $result;
+            }
+            return array('success' => false, 'message' => 'Registros não encontrados ou já removido' , 'type' => 'warning');
         }
         return array('success' => false, 'message' => 'Registro não encontrado', 'type' => 'warning');
     }
@@ -117,12 +128,23 @@ abstract class AppController extends Controller
     }
 
     /**
+     * Pre save function to execute other process depending of vo
+     *
+     * @param $vo
+     * @return mixed
+     */
+    protected function _preSave($vo) {
+        return $vo;
+    }
+
+    /**
      * Post save function to execute other process depending of vo
      *
      * @param $vo
      * @return mixed
      */
-    protected function _postSave($vo) {
+    protected function _postSave($vo)
+    {
         return $vo;
     }
 

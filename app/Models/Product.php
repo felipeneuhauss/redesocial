@@ -14,12 +14,20 @@ class Product extends Model implements ModelInterface
 
     protected $table = 'products';
 
-    protected $fillable = ['description', 'category_id', 'supplier_id'];
+    protected $fillable = ['description', 'category_id', 'sub_category_id',  'supplier_id'];
 
     protected $guarded = ['id'];
 
     public function supplier() {
         return $this->belongsTo('App\Models\Supplier');
+    }
+
+    public function category() {
+        return $this->belongsTo('App\Models\Category', 'category_id');
+    }
+
+    public function subCategory() {
+        return $this->belongsTo('App\Models\Category', 'sub_category_id');
     }
 
     public function categories() {

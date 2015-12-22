@@ -22,7 +22,7 @@
                                     <form id="widget-subscribe-form" action="include/subscribe.php" role="form" method="post" class="nobottommargin">
                                         <div class="input-group divcenter">
                                             <input type="email" id="widget-subscribe-form-email" name="widget-subscribe-form-email"
-                                            class="form-control required email" placeholder="Your Email Address">
+                                            class="form-control required email" placeholder="Informe seu e-mail">
                                             <span class="input-group-btn">
                                                 <button class="btn btn-default" type="submit">Inscrever</button>
                                             </span>                                        </div>
@@ -90,12 +90,12 @@
                             <h4>Nossos contatos</h4>
                         </div>
 
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+                        <p>Entre em contato com nossa equipe de atendimentos. Segunda a sexta: Horário comercial</p>
 
                         <ul class="nobottommargin nobullets">
-                            <li><strong>Monday-Friday:</strong> 10AM to 7PM</li>
-                            <li><strong>Saturday &amp; Sunday:</strong> 11AM to 3PM</li>
-                            <li><strong>Happy Hour:</strong> 3PM to 6PM</li>
+                            <?php /*<li><strong>Monday-Friday:</strong> 10AM to 7PM</li>*/ ?>
+                            <?php /*<li><strong>Saturday &amp; Sunday:</strong> 11AM to 3PM</li>*/ ?>
+                            <?php /*<li><strong>Happy Hour:</strong> 3PM to 6PM</li>*/ ?>
                         </ul>
                         </div>
 
@@ -124,12 +124,22 @@
                     <div class="col_half">
                         <img src="/images/logo/footer-logo.png" alt="" class="footer-logo standard-logo">
                         <img src="/images/logo/footer-logo-large.png" alt="" class="footer-logo retina-logo">
-                        Copyright &copy; 2015 Chocolat. All Rights Reserved.
+                        UpEvento &copy; <?php echo date('Y') ?>. Todos os direitos reservados.
                     </div>
 
                     <div class="col_half col_last tright">
                         <div class="copyrights-menu copyright-links fright clearfix">
-                            <a href="/#">Home</a> <a href="/#">About</a> <a href="/#">Menu</a> <a href="/#">Locations</a> <a href="/#">Contact</a>
+                            <a href="/">Eventos</a>
+                            <a href="/suppliers/all-suppliers">Fornecedores</a>
+                            <a href="/#">O que é a UPEvento</a>
+                            <a href="/contact">Contato</a>
+                            <?php if(Auth::guest()): ?>
+                                <a href="/auth/register">Cadastre-se</a>
+                                <a href="/auth/login">Login</a>
+                            <?php else: ?>
+                            <a href="/#"><?php echo e(Auth::user()->name); ?></a>
+                            <?php endif; ?>
+
                         </div>
                         <div class="fright clearfix">
                             <a href="/#" class="social-icon si-small si-borderless nobottommargin si-facebook">

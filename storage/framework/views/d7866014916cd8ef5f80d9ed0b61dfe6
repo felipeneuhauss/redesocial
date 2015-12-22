@@ -11,9 +11,9 @@
     <div class="content-wrap bgcolor-grey-light">
         <div class="container clearfix">
             <?php echo $__env->make('layouts.messages', array('errors' => $errors), array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
-            <form id="register-form" role="form" method="POST" action="/auth/register">
-                <div class="col-md-6">
+            <?php echo Form::open(array('id'=>'register-form', 'url'=>'/auth/register','method'=>'POST', 'files'=>true)); ?>
 
+                <div class="col-md-6">
                         <input type="hidden" name="_token" value="<?php echo e(csrf_token()); ?>">
 
                         <div class="form-group">
@@ -58,6 +58,13 @@
                             <?php echo Form::label('phone', 'Telefone'); ?>
 
                             <?php echo Form::text('phone', old('phone'), ['placeholder' => 'Número de telefone', 'class'=>'form-control required phone']);; ?>
+
+                        </div>
+                        <div class="form-group">
+                         <?php echo Form::label('image', 'Selecione uma foto'); ?>
+
+                         <?php echo Form::file('image', ['placeholder' => 'Selecione uma foto',
+                         'class'=>'', 'accept' => 'png|jpe?g']); ?>
 
                         </div>
                 </div>

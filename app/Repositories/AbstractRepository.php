@@ -63,8 +63,11 @@ class AbstractRepository implements RepositoryInterface
         return $this->model->getFillable();
     }
 
-    public function lists($name = 'name', $id = 'id'){
+    public function lists($name = 'name', $id = 'id', $column = '',  $parentId = null){
         // $countries = \App\Models\Country::lists('name','id');
+        if (!is_null($parentId)) {
+            return $this->model->where($column, $parentId)->lists($name, $id);
+        }
         return $this->model->lists($name, $id);
 
     }

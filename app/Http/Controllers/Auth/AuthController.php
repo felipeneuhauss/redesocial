@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Hash;
 use Validator;
 use Illuminate\Foundation\Auth\ThrottlesLogins;
 use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
+use Intervention\Image\Facades\Image;
 use Request;
 
 class AuthController extends AppController
@@ -110,7 +111,26 @@ class AuthController extends AppController
         $data['password'] = Hash::make($data['password']);
         $vo->fill($data);
 
+        // Salvar a imagem do usuario
+        $image = Request::file('image');
+
+        $destinationPath = public_path() . '/uploads/users/'.md5($vo->id);
+//            $filename = $brandImage->getClientOriginalName();
+        $fileExtension = $image->getClientOriginalExtension();
+
+        // Save the gallery object
+        $fileName = uniqid().'.'.$fileExtension;
+        $vo->image = $fileName;
         $vo->save();
+
+        // Save the upload file
+        $uploadSuccess = $image->move($destinationPath, $fileName);
+
+        if ($uploadSuccess) {
+            // resizing an uploaded file
+            Image::make($destinationPath .'/'. $fileName)->resize(100, 100)
+                ->save($destinationPath .'/'. "100x100_" . $fileName);
+        }
 
         return $vo;
     }

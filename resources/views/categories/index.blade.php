@@ -15,13 +15,11 @@
          <a href="/categories/form" class="btn btn-info right">Nova categoria</a>
       </div>
       <div class="col-lg-3">
-        <div class="input-group">
+        <div>
          <form action="/categories/?page=<?php echo $data->currentPage(); ?>" method="get" class="form-inline">
               <input type="text" class="form-control" name="search" id="table-search"
                placeholder="Pesquisar..." value="<?php echo $search;?>">
-              <span class="input-group-btn">
-                <button class="btn btn-default" type="submit">Pesquisar</button>
-              </span>
+               <button class="btn btn-default" type="submit">Pesquisar</button>
           </form>
         </div><!-- /input-group -->
       </div><!-- /.col-lg-6 -->
@@ -33,6 +31,7 @@
                       <tr>
                         <th>Imagem</th>
                         <th>Nome</th>
+                        <th>Categoria pai</th>
                         <th>Remover</th>
                         <th>Editar</th>
                       </tr>
@@ -44,6 +43,7 @@
                                  '/uploads/categories/'.$vo->image : 'http://placehold.it/50x50';?>" alt="..." height="50px" class="img-thumbnail" style="height: 50px;">
                     </td>
                     <td><?= $vo->name ?></td>
+                    <td><?= $vo->category ? $vo->category->name : '-' ?></td>
                     <td><a href="/categories/remove/<?= $vo->id; ?>">
                               <span class="icon-trash delete"></span>
                             </a></td>

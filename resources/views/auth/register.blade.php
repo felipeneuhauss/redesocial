@@ -13,9 +13,8 @@
     <div class="content-wrap bgcolor-grey-light">
         <div class="container clearfix">
             @include('layouts.messages', array('errors' => $errors))
-            <form id="register-form" role="form" method="POST" action="/auth/register">
+            {!! Form::open(array('id'=>'register-form', 'url'=>'/auth/register','method'=>'POST', 'files'=>true)) !!}
                 <div class="col-md-6">
-
                         <input type="hidden" name="_token" value="{{ csrf_token() }}">
 
                         <div class="form-group">
@@ -54,6 +53,11 @@
                         <div class="form-group">
                             {!! Form::label('phone', 'Telefone') !!}
                             {!! Form::text('phone', old('phone'), ['placeholder' => 'Número de telefone', 'class'=>'form-control required phone']); !!}
+                        </div>
+                        <div class="form-group">
+                         {!! Form::label('image', 'Selecione uma foto') !!}
+                         {!! Form::file('image', ['placeholder' => 'Selecione uma foto',
+                         'class'=>'', 'accept' => 'png|jpe?g']) !!}
                         </div>
                 </div>
                 <div class="col-md-6">

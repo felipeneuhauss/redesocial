@@ -58,7 +58,6 @@
     </section>
 <script type="text/javascript">
 //wizard with options and events
-$("#supplier-form").validate();
 
 
 </script>

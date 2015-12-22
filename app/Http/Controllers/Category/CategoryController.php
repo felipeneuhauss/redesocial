@@ -29,10 +29,15 @@ class CategoryController extends AppController {
         $validator = Validator::make(Request::all(), [
             'name' => 'required|max:100|min:3',
         ],  [
-            'name.required' => 'O campo :attribute é obrigatório.'
+            'name.required' => 'O campo :attribute é obrigatório.',
             ]);
 
         return $validator;
+    }
+
+    protected function _preSave($vo) {
+        $vo->category_id = $vo->category_id == "" ? null : $vo->category_id;
+        return $vo;
     }
 
     protected function _postSave($vo) {
@@ -64,6 +69,12 @@ class CategoryController extends AppController {
     protected function _initForm($vo = null)
     {
         $categories = \App\Models\Category::lists('name','id');
+
+//        $subCategories = array();
+//
+//        if ($vo->id && $vo->sub_category_id) {
+//            $subCategories = \App\Models\Category::where('category_id', $vo->sub_category_id)->lists('name','id');
+//        }
 
         return array('vo' => $vo, 'categories' => $categories);
     }

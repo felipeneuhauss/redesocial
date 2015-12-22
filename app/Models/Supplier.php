@@ -41,13 +41,22 @@ class Supplier extends Model implements ModelInterface
         return $this->belongsToMany('App\Models\Gallery', 'supplier_galleries');
     }
 
-    public function categories() {
+    public function ratings() {
+        return $this->hasMany('App\Models\Rating');
+    }
+
+    public function categories($separatedNamesByBar = false) {
         $categories = array();
+        $categoryNames = array();
         foreach ($this->products as $product) {
-            foreach ($product->categories as $category) {
-                $categories[] = $category->name;
-            }
+            $categories[] = $product->category;
+            $categoryNames[] = $product->category->name;
         }
+
+        if ($separatedNamesByBar) {
+            return implode(' | ', array_unique($categoryNames));
+        }
+
         return array_unique($categories);
     }
 
@@ -63,6 +72,20 @@ class Supplier extends Model implements ModelInterface
             ->where('social_name', 'like', '%'.$search.'%')
             ->orWhere('cnpj', 'like', '%'.$search.'%')
             ->paginate($perPage);
+
+        return $result;
+    }
+
+    /**
+     * Obtem a top empresas
+     *
+     * @param $top_quantity
+     * @return mixed
+     */
+    public function getTopSuppliers($top_quantity = 5, $perPage = 10) {
+        $result = $this->orderBy('grade', 'desc')
+            ->orderBy('rating_quantity', 'desc')
+            ->take($top_quantity)->paginate($perPage);
 
         return $result;
     }

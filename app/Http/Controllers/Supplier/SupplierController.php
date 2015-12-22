@@ -16,6 +16,7 @@ use App\Repositories\Eloquent\Repository;
 use Illuminate\Support\Facades\Validator;
 use Intervention\Image\Facades\Image;
 use Request;
+use Mail;
 
 class SupplierController extends AppController {
 
@@ -36,8 +37,12 @@ class SupplierController extends AppController {
             $result = $this->repository->paginate(10);
         }
 
+        $modelSupplier = new \App\Models\Supplier();
+
+        $topSuppliers = $modelSupplier->getTopSuppliers(5, 5);
+
         return view($this->viewFolderName.'.all-suppliers')
-            ->with('data', $result)->with('search', $search);
+            ->with('data', $result)->with('search', $search)->with('topSuppliers', $topSuppliers);
     }
 
     /**
@@ -105,10 +110,20 @@ class SupplierController extends AppController {
     {
         $countries = \App\Models\Country::lists('name','id');
 
-        return array('vo' => $vo, 'countries' => $countries);
+        $modelSupplier = new \App\Models\Supplier();
+
+        $topSuppliers = $modelSupplier->getTopSuppliers(5, 5);
+
+        $starsRatingResume = array();
+        if ($vo->id) {
+            $starsRatingResume = \App\Models\Rating::calculateSupplierStarsQuantityResume($vo->id);
+        }
+
+        return array('vo' => $vo, 'countries' => $countries,
+            'topSuppliers' => $topSuppliers, 'starsRatingResume' => $starsRatingResume);
     }
 
-    // https://laracasts.com/discuss/channels/general-discussion/jquery-file-upload-with-laravel
+    
     protected function _postSave($vo) {
         /**
          * Salva a imagem da marca da empresa
@@ -166,6 +181,28 @@ class SupplierController extends AppController {
                     Image::make($destinationPath .'/'. $fileName)->resize(100, 100)
                         ->save($destinationPath .'/'. "100x100_" . $fileName);
                 }
+            }
+        }
+    }
+
+    public function contact() {
+        if (Request::isMethod('post'))
+        {
+            try {
+                $data = Request::all();
+
+                $supplier = \App\Models\Supplier::find($data['id']);
+
+                Mail::send('index.contact-mail', ['data' => $data], function ($m) use ($data, $supplier) {
+                    $m->to($supplier->email, $supplier->fantasy_name)
+                        ->subject('UPEVENTO - Contato pelo site ')
+                        ->from($data['email'], $data['name'])
+                        ->replyTo($data['email'], $data['name']);
+                });
+
+                return "E-mail enviado com sucesso! Em breve retornaremos.";
+            } catch (Exception $e) {
+                return "Tivemos problemas para enviar seu e-mail.". $e->getMessage();
             }
         }
     }

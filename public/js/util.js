@@ -185,22 +185,21 @@ function link( id , request ){
  * @param column - Ex: id_modulo
  */
 function getOptionsViaAjax( idElementFrom , idElementTo , strUrlRequest , data ){
-    console.log(idElementFrom);
     $( idElementFrom ).change( function(){
-        data.value = $(this).val();
+        var data = data || {value: $(this).val()};
+        console.log(data);
         if (data.value != undefined && data.value != "" && data.value != null) {
 
             $.ajax({
-                type: "POST",
-                url: strUrlRequest ,
-                data: data ,
+                type: "GET",
+                url: strUrlRequest + data.value ,
                 beforeSend: function(){
                     $( idElementTo ).html('<option>Carregando...</option>');
                 },
                 success: function(data, textStatus, jqXHR){                    
                     var options = '';
                     options += '<option value="0">Selecione...</option>';
-                    $.each(data.lista, function(key, value){
+                    $.each(data, function(key, value){
                         options += '<option value="' + key + '">' + value + '</option>';
                     });
                     $( idElementTo ).html(options);
@@ -246,23 +245,22 @@ function maxLengthTextAreaControl( element ){
 
     $(element).keypress(function(event){
         var key = event.which;
-
         //todas as teclas incluindo enter
-        if(key >= 33 || key == 13) {
+        if(key >= 33 || key == 13 || key == 32) {
             var maxLength = $(this).attr("length");
             var length = this.value.length;
             if(length >= maxLength) {
                 event.preventDefault();
-                $(this).next('span').html( this.value.length + " de "+ maxLength + " caracters" ).addClass( 'error' );
+                $(this).next('span').html( this.value.length + " de "+ maxLength + " caracteres" ).addClass( 'error' );
             }else{
-                $(this).next('span').html( this.value.length + " de " + maxLength + " caracters" ).removeClass( 'error' );
+                $(this).next('span').html( this.value.length + " de " + maxLength + " caracteres" ).removeClass( 'error' );
             }
         }
         var maxLength = $(this).attr("length");
         if( this.value.length > maxLength )
-            $(this).next('span').html( this.value.length + " de "+ maxLength + " caracters" ).addClass( 'error' );
+            $(this).next('span').html( this.value.length + " de "+ maxLength + " caracteres" ).addClass( 'error' );
         else
-            $(this).next('span').html( this.value.length + " de "+ maxLength + " caracters" ).removeClass( 'error' );
+            $(this).next('span').html( this.value.length + " de "+ maxLength + " caracteres" ).removeClass( 'error' );
 
         $(this).next('span').css({'padding-top':'5px', 'margin': '5px' , 'display' : 'block'});
 

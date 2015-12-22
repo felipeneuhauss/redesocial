@@ -40,6 +40,8 @@ class CreateSuppliersTable extends Migration
             $table->string('instagram');
             $table->string('brand_image',255);
             $table->string('youtube');
+            $table->float('grade')->nullable();
+            $table->integer('rating_quantity')->nullable();
             $table->integer('user_id')->unsigned();
             $table->dateTime('deleted_at')->nullable();
             $table->timestamps();

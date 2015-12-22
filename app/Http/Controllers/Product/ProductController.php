@@ -15,6 +15,7 @@ use App\Models\Product;
 use App\Models\ProductCategory;
 use App\Models\ProductGallery;
 use App\Repositories\Eloquent\Repository;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 use Intervention\Image\Facades\Image;
 use Request;
@@ -32,10 +33,12 @@ class ProductController extends AppController {
     {
         return Validator::make(Request::all(), [
             'supplier_id' => 'required',
+            'category_id' => 'required',
             'description' => 'required',
             'galleries'   => 'max:3'
         ],  [
             'supplier_id.required' => 'O campo :attribute é obrigatório.',
+            'category_id.required' => 'O campo :attribute é obrigatório.',
             'description.required' => 'O campo :attribute é obrigatório.',
             'galleries.max'        => 'Selecione apenas 3 imagens.'
             ]);
@@ -43,10 +46,31 @@ class ProductController extends AppController {
 
     protected function _initForm($vo = null)
     {
-        $suppliers = \App\Models\Supplier::lists('fantasy_name','id');
+        $suppliers = array();
+
+        if (Auth::check()) {
+            $suppliers = \App\Models\Supplier::where('user_id', Auth::user()->id)->lists('fantasy_name','id');
+        }
+
         $categories = \App\Models\Category::lists('name','id');
 
-        return array('vo' => $vo, 'suppliers' => $suppliers, 'categories' => $categories->chunk(4, true));
+        $subCategories = array();
+
+        if ($vo->id && $vo->sub_category_id) {
+            $subCategories = \App\Models\Category::where('category_id', $vo->category_id)->lists('name','id');
+        }
+
+        $starsRatingResume = array();
+        if ($vo->id) {
+            $starsRatingResume = \App\Models\Rating::calculateProductStarsQuantityResume($vo->category_id, $vo->sub_category_id, $vo->supplier->id);
+        }
+
+        return array('vo' => $vo, 'suppliers' => $suppliers,
+            'categories' => $categories, 'subCategories' => $subCategories, 'starsRatingResume' => $starsRatingResume);
+    }
+
+    protected function _preSave($vo) {
+        $vo->sub_category_id = $vo->sub_category_id == "" || $vo->sub_category_id == "0" ? null : $vo->sub_category_id;
     }
 
     // https://laracasts.com/discuss/channels/general-discussion/jquery-file-upload-with-laravel

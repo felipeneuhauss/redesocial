@@ -151,6 +151,11 @@ return [
          */
         Intervention\Image\ImageServiceProvider::class,
         Intervention\Image\ImageServiceProvider::class,
+
+        /*
+         * Helpers
+         */
+        App\Providers\HelperServiceProvider::class
     ],
 
     /*

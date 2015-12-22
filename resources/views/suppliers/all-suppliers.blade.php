@@ -2,7 +2,7 @@
 @section('content')
  <!-- Page Title
         ============================================= -->
-        <section id="page-title" class="page-title-parallax page-title-dark" style="height:127px ; background: url('/images/site/supplier.jpg'); padding: 35px 0px;" data-stellar-background-ratio="0.3">
+        <section id="page-title" class="page-title-parallax page-title-dark" style="height:127px ; background-color: #4E4E4E; padding: 30px 0px;" data-stellar-background-ratio="0.3">
 
             <div class="container clearfix">
                 <h1>Fornecedores</h1>
@@ -32,7 +32,7 @@
                                     <div class="entry-image">
                                         <a href="#">
                                             <img src="{{ $vo->brand_image != "" ?
-                                                                        '/uploads/brands/'.$vo->brand_image : 'http://placehold.it/400x300' }}" alt="..." width="100px" >
+                                                    '/uploads/brands/'.$vo->brand_image : 'http://placehold.it/300x225' }}" alt="..." width="300px" >
                                             {{--<div class="entry-date">08<span>Jan</span></div>--}}
                                         </a>
                                     </div>
@@ -41,17 +41,86 @@
                                             <h2><a href="#">{{$vo->fantasy_name}}</a></h2>
                                         </div>
                                         <ul class="entry-meta clearfix">
-                                            <li><a href="#">{{implode('-',$vo->categories())}}</li>
-                                            <li><a href="#"><i class="icon-map-marker2"></i> {{$vo->city}},{{$vo->state}}</a></li>
-                                        </ul>
-                                        <div class="entry-content">
-                                            @foreach($vo->products as $product)
-                                                <p>{{str_limit($product->description, 70)}}</p>
+                                            <li>
+                                            @foreach($vo->categories() as $category)
+                                                <a href="#">{{$category->name}}</a>
                                             @endforeach
-                                            <a href="/suppliers/detail/{{$vo->id}}" class="btn button-light button-small">Entrar</a> <a href="#" class="btn button button-small">Contato</a>
+                                            </li>
+                                        </ul>
+
+                                        <div class="entry-content">
+                                            <?php echo generate_stars(5, $vo->grade, $vo->rating_quantity); ?>
+                                            <a href="#"><i class="icon-map-marker2"></i> {{$vo->city}}, {{$vo->state}}</a>
+                                        </div>
+                                        <div class="entry-content">
+                                            <p>{{$vo->description}}</p>
+                                            <a href="/suppliers/detail/{{$vo->id}}" class="btn button-light button-small">Entrar</a>
+                                            <a href="#" data-toggle="modal" class="btn button button-small" data-target="#myModal{{$vo->id}}">Contato</a>
                                         </div>
                                     </div>
                                 </div>
+                                 <!-- Modal -->
+                                  <div class="modal fade" id="myModal{{$vo->id}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                                       <div class="modal-dialog" role="document">
+                                         <div class="modal-content">
+                                           <div class="modal-header">
+                                             <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                             <h4 class="modal-title" id="myModalLabel">Entre em contato com {{$vo->fantasy_name}}</h4>
+                                           </div>
+                                           <form id="quick-contact-form-{{$vo->id}}" name="quick-contact-form" action="/suppliers/contact" method="post" class="quick-contact-form nobottommargin">
+                                           <div class="modal-body">
+                                               <div id="quick-contact-form-result-{{$vo->id}}" data-notify-type="success" data-notify-msg="<i class=icon-ok-sign></i> Mensagem enviada com sucesso!"></div>
+                                                   <div role="alert" class="alert alert-info processing" style="display: none;">
+                                                         <strong><img src="/images/site/ajax-loader.gif" /> Aguarde!</strong> Sua mensagem está sendo enviada...
+                                                       </div>
+                                                    <div role="alert" class="alert alert-success message-sended" style="display: none;">
+                                                         <strong>Yes!</strong> Sua mensagem foi enviada com sucesso!
+                                                       </div>
+                                                    <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                                                    <input type="hidden" name="id" value="{{$vo->id}}">
+                                                    <div class="form-group">
+                                                        <input type="text" class="required sm-form-control input-block-level" id="quick-contact-form-name" name="name" value="" placeholder="Nome completo" />
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <input type="text" class="required sm-form-control email input-block-level" id="quick-contact-form-email" name="email" value="" placeholder="Seu e-mail" />
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <textarea class="required sm-form-control input-block-level short-textarea" id="quick-contact-form-message" name="message" rows="4" cols="30" placeholder="Mensagem"></textarea>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <input type="text" class="hidden" id="quick-contact-form-botcheck" name="quick-contact-form-botcheck" value="" />
+                                                    </div>
+                                                   <script type="text/javascript">
+                                                       // TODO: Desenvolver o envio do contato ao fornecedor
+                                                        $("#quick-contact-form-{{$vo->id}}").validate();
+
+                                                        $("#quick-contact-form-{{$vo->id}}").submit(function(){
+                                                           $(this).ajaxSubmit({
+                                                              target: '#quick-contact-form-result-{{$vo->id}}',
+                                                              beforeSubmit: function(arr, $form, options) {
+                                                                  $("#quick-contact-form-{{$vo->id}}").find('.processing').fadeIn();
+                                                                  return $("#quick-contact-form-{{$vo->id}}").valid();
+                                                              },
+                                                              success: function() {
+                                                                  $("#quick-contact-form-{{$vo->id}}").find('.processing').fadeOut();
+                                                                  $("#quick-contact-form-{{$vo->id}}").find('.message-sended').fadeIn();
+                                                                  $("#quick-contact-form-{{$vo->id}}").find('.sm-form-control').val('');
+                                                                  $('#quick-contact-form-result-{{$vo->id}}').attr('data-notify-msg', $('#quick-contact-form-result-{{$vo->id}}').html()).html('');
+                                                                  IGNITE.widget.notifications($('#quick-contact-form-result-{{$vo->id}}'));
+                                                              }
+                                                          });
+                                                          return false;
+                                                      });
+                                                   </script>
+                                           </div>
+                                           <div class="modal-footer">
+                                             <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
+                                             <button type="submit" class="btn btn-primary" id="quick-contact-form-submit-{{$vo->id}}" >Enviar</button>
+                                           </div>
+                                           </form>
+                                         </div>
+                                       </div>
+                                     </div>
                                 @endif
                             @endforeach
 
@@ -64,166 +133,41 @@
                             {{--<li class="next"><a href="#">Newer &rarr;</a></li>--}}
                         {{--</ul><!-- .pager end -->--}}
                         <div class="row center">
-                                {!! $data->render() !!}
-                            </div>
-
+                            {!! $data->render() !!}
+                        </div>
                     </div>
 
                     <div class="sidebar nobottommargin col_last clearfix">
                         <div class="sidebar-widgets-wrap">
-
                             <div class="widget clearfix">
-
-                                <h4>Top 5</h4>
+                                <h4>Top 10</h4>
                                 <div id="post-list-footer">
 
+                                    @foreach ($topSuppliers as $topSupplier)
+                                    <hr />
                                     <div class="spost clearfix">
                                         <div class="entry-image">
-                                            <a href="#" class="nobg"><img src="http://placehold.it/100x100" alt=""></a>
+                                            <a href="#" class="nobg">
+                                            <img src="{{ $topSupplier->brand_image != "" ? '/uploads/brands/'.$topSupplier->brand_image :
+                                                'http://placehold.it/100x100' }}" alt="..." width="100px" >
+                                            </a>
                                         </div>
                                         <div class="entry-c">
                                             <div class="entry-title">
-                                                <h4><a href="#">NYC Restaurant Week</a></h4>
-                                                <p class="nobottommargin">Lorem ipsum dolor sit amet consectetur adipis...</p>
+                                                <h4><a href="/suppliers/detail/{{$topSupplier->id}}">{{$topSupplier->fantasy_name}}</a></h4>
+                                                <p class="nobottommargin">
+                                                     <small>
+                                                        <?php echo $topSupplier->categories(true); ?>
+                                                     </small>
+                                                     <br />
+                                                    <?php echo generate_stars(5, $topSupplier->grade, $topSupplier->rating_quantity); ?>
+                                                </p>
                                             </div>
-                                            <ul class="entry-meta">
-                                                <li>17th Dec 2015</li>
-                                            </ul>
                                         </div>
                                     </div>
-
-                                    <div class="spost clearfix">
-                                        <div class="entry-image">
-                                            <a href="#" class="nobg"><img src="http://placehold.it/100x100" alt=""></a>
-                                        </div>
-                                        <div class="entry-c">
-                                            <div class="entry-title">
-                                                <h4><a href="#">Kids Food Fest</a></h4>
-                                                <p class="nobottommargin">Lorem ipsum dolor sit amet consectetur adipis...</p>
-                                            </div>
-                                            <ul class="entry-meta">
-                                                <li>8th June 2015</li>
-                                            </ul>
-                                        </div>
-                                    </div>
-
-                                    <div class="spost clearfix">
-                                        <div class="entry-image">
-                                            <a href="#" class="nobg"><img src="http://placehold.it/100x100" alt=""></a>
-                                        </div>
-                                        <div class="entry-c">
-                                            <div class="entry-title">
-                                                <h4><a href="#">Taste of the Old World</a></h4>
-                                                <p class="nobottommargin">Lorem ipsum dolor sit amet consectetur adipis...</p>
-                                            </div>
-                                            <ul class="entry-meta">
-                                                <li>22nd Sept 2015</li>
-                                            </ul>
-                                        </div>
-                                    </div>
-
+                                    @endforeach
                                 </div>
-
                             </div>
-
-                            <div class="widget clearfix">
-
-                                <h4>Media Gallery</h4>
-                                <div id="oc-portfolio-sidebar" class="owl-carousel portfolio-5">
-
-                                    <div class="oc-item">
-                                        <div class="iportfolio">
-                                            <div class="portfolio-image">
-                                                <a href="#">
-                                                    <img src="http://placehold.it/400x300" alt="">
-                                                </a>
-                                                <div class="portfolio-overlay">
-                                                    <a href="http://vimeo.com/16270111" class="center-icon" data-lightbox="iframe"><i class="icon-play"></i></a>
-                                                </div>
-                                            </div>
-                                            <div class="portfolio-desc center nobottompadding">
-                                                <h3><a href="portfolio-single-video.html">Specialties</a></h3>
-                                                <span><a href="#">Wines, Beer</a></span>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="oc-item">
-                                        <div class="iportfolio">
-                                            <div class="portfolio-image">
-                                                <a href="portfolio-single.html">
-                                                    <img src="http://placehold.it/400x300" alt="">
-                                                </a>
-                                                <div class="portfolio-overlay">
-                                                    <a href="http://placehold.it/1000x667" class="center-icon" data-lightbox="image"><i class="icon-picture"></i></a>
-                                                </div>
-                                            </div>
-                                            <div class="portfolio-desc center nobottompadding">
-                                                <h3><a href="portfolio-single.html">Gatronomy</a></h3>
-                                                <span><a href="#">Soups, Salads</a></span>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                </div>
-
-                                <script type="text/javascript">
-
-                                    jQuery(document).ready(function($) {
-
-                                        var ocClients = $("#oc-portfolio-sidebar");
-
-                                        ocClients.owlCarousel({
-                                            items: 1,
-                                            margin: 10,
-                                            loop: true,
-                                            nav: false,
-                                            autoplay: true,
-                                            dots: true,
-                                            autoplayHoverPause: true
-                                        });
-
-                                    });
-
-                                </script>
-
-                            </div>
-
-                            <div class="widget quick-contact-widget clearfix">
-
-                                <h4>Quick Contact</h4>
-                                <div id="quick-contact-form-result" data-notify-type="success" data-notify-msg="<i class=icon-ok-sign></i> Message Sent Successfully!"></div>
-                                <form id="quick-contact-form" name="quick-contact-form" action="include/quickcontact.php" method="post" class="quick-contact-form nobottommargin">
-                                    <div class="form-process"></div>
-
-                                    <input type="text" class="required sm-form-control input-block-level" id="quick-contact-form-name" name="quick-contact-form-name" value="" placeholder="Full Name" />
-                                    <input type="text" class="required sm-form-control email input-block-level" id="quick-contact-form-email" name="quick-contact-form-email" value="" placeholder="Email Address" />
-                                    <textarea class="required sm-form-control input-block-level short-textarea" id="quick-contact-form-message" name="quick-contact-form-message" rows="4" cols="30" placeholder="Message"></textarea>
-                                    <input type="text" class="hidden" id="quick-contact-form-botcheck" name="quick-contact-form-botcheck" value="" />
-                                    <button type="submit" id="quick-contact-form-submit" name="quick-contact-form-submit" class="btn button button-small nomargin" value="submit">Send Email</button>
-                                </form>
-
-                                <script type="text/javascript">
-
-                                    $("#quick-contact-form").validate({
-                                        submitHandler: function(form) {
-                                            $(form).find('.form-process').fadeIn();
-                                            $(form).ajaxSubmit({
-                                                target: '#quick-contact-form-result',
-                                                success: function() {
-                                                    $(form).find('.form-process').fadeOut();
-                                                    $(form).find('.sm-form-control').val('');
-                                                    $('#quick-contact-form-result').attr('data-notify-msg', $('#quick-contact-form-result').html()).html('');
-                                                    IGNITE.widget.notifications($('#quick-contact-form-result'));
-                                                }
-                                            });
-                                        }
-                                    });
-
-                                </script>
-
-                            </div>
-
                         </div>
                     </div>
 

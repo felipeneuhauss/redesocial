@@ -18,7 +18,11 @@ class HomeController extends Controller
 
     public function index()
     {
-        return view('index.home')->with(['showSlides' => true]);
+        $modelSupplier = new \App\Models\Supplier();
+
+        $topSuppliers = $modelSupplier->getTopSuppliers(10, 10);
+
+        return view('index.home', ['showSlides' => true, 'topSuppliers' => $topSuppliers]);
     }
 
     public function contact()

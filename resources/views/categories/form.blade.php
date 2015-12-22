@@ -21,6 +21,10 @@
            <?php endif ?>
            {!! Form::open(array('id'=>'category-form', 'class' => 'form-validate', 'url'=>'/categories/form','method'=>'POST', 'files'=>true)) !!}
             <input type="hidden" name="_token" value="{{csrf_token()}}" />
+            <div class="form-group">
+                {!! Form::label('category_id', 'Categoria pai') !!}
+                {!! Form::select('category_id', $categories, $vo->category_id, ['placeholder' => 'Selecione...', 'class'=>'form-control']); !!}
+              </div>
              <div class="form-group">
                  {!! Form::label('name', 'Nome') !!}
                  {!! Form::text('name', $vo->name, ['placeholder' => 'Nome', 'class'=>'form-control required']); !!}

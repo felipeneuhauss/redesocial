@@ -18,7 +18,6 @@
 | loading any of our classes later on. It feels nice to relax.
 |
 */
-
 require __DIR__.'/../bootstrap/autoload.php';
 
 /*
@@ -56,3 +55,6 @@ $response = $kernel->handle(
 $response->send();
 
 $kernel->terminate($request, $response);
+
+
+//export ORACLE_HOME=/opt/oracle/oci/instantclient_11_2/ ./configure --with-oci8=instantclient,/opt/oracle/oci/instantclient_11_2

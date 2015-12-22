@@ -5,9 +5,14 @@
                 <!-- Promo -->
                 <div class="promo promo-light promo-full header-stick nobottommargin">
                     <div class="container clearfix">
-                        <h3>Cadastre-se e conheça as melhores empresas para seu evento <span class="color">empresarial</span></h3>
-                        <span>Empresas qualificadas para que seu evento seja um sucesso!</span>
-                        <a href="/auth/register" class="button button-light bgcolor-grey-light button-rounded button-reveal button-large button-3d tright"><i class="icon-angle-right"></i><span>Cadastre-se</span></a>
+                        <div class="col-md-10">
+
+                            <h3>Cadastre-se e conheça as melhores empresas para seu evento <span class="color">empresarial</span></h3>
+                            <span>Empresas qualificadas para que seu evento seja um sucesso!</span>
+                        </div>
+                        <div class="col-md-2">
+                            <a href="/auth/register" class="button button-light bgcolor-grey-light button-rounded button-reveal button-large button-3d tright"><i class="icon-angle-right"></i><span>Cadastre-se</span></a>
+                        </div>
                    </div>
        	  	  	</div><!-- End Promo -->
 
@@ -16,213 +21,38 @@
                         <div class="col_half nobottommargin center">
                             <a href="/suppliers/form"><img src="/images/site/be_a_supplier.jpg" alt="" data-animate="fadeInUp"></a>
                         </div>
-                        <div class="col_half nobottommargin col_last">
-                            <div class="heading-block" style="padding-top: 40px;">
-                                <h3 data-animate="fadeInDown">Responsive Mobile Ready Design</h3>
-                                <span data-animate="fadeInUp">Donec sed sem at tellus lobortis consequat</span>
-                            </div>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam sit amet est sed tellus gravida tempus
-                            quis malesuada nisi. Maecenas posuere tristique ipsum eget.</p>
-                            <a href="#" class="button button-rounded button-reveal button-large button-3d topmargin-sm noleftmargin tright"
-                            style="color:#FFF"><i class="icon-angle-right"></i><span>Read More</span></a>
+                        <div class="col_half nobottommargin col_last grey">
+                            <h3 data-animate="fadeInDown">Cliente</h3>
+                            <span data-animate="fadeInUp">Conheça os melhores fornecedores para o seu evento corporativo</span>
+                            <hr />
+                            <form data-animate="fadeInUp" class="form-validate" role="form" method="POST" action="/auth/login">
+                                <input type="hidden" name="_token" value="{{ csrf_token() }}">
+
+                                <div class="form-group">
+                                    <label class="control-label">Login / Seu e-mail cadastrado</label>
+                                    <input type="email" class="form-control required email" name="email" value="{{ old('email') }}">
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="control-label">Senha</label>
+                                    <input type="password" class="form-control required" name="password">
+                                </div>
+                                <div class="form-group">
+                                    <button type="submit" class="btn btn-warning">Entrar</button>
+                                    <a class="btn btn-link" href="/password/email">Esqueceu sua senha?</a> |
+                                    <a class="btn btn-link" href="/auth/register">Não tenho cadastro ainda</a>
+                                </div>
+                            </form>
+
+        {{--<div class="heading-block" style="padding-top: 40px;">--}}
+                            {{--</div>--}}
+                            {{--<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam sit amet est sed tellus gravida tempus--}}
+                            {{--quis malesuada nisi. Maecenas posuere tristique ipsum eget.</p>--}}
+                            {{--<a href="#" class="button button-rounded button-reveal button-large button-3d topmargin-sm noleftmargin tright"--}}
+                            {{--style="color:#FFF"><i class="icon-angle-right"></i><span>Read More</span></a>--}}
                         </div>
                     </div>
            	  </div>
-
-                <!-- Portfolio Items
-
-                ============================================= -->
-                {{--<div id="portfolio" class="portfolio-nomargin portfolio-full clearfix">--}}
-
-                        {{--<article class="portfolio-item pf-media pf-icons">--}}
-                            {{--<div class="portfolio-image">--}}
-                                {{--<img src="http://placehold.it/400x300" alt="">--}}
-                                {{--<div class="portfolio-overlay">--}}
-                                    {{--<div class="portfolio-desc">--}}
-                                        {{--<h3><a href="portfolio-single-1.html">Entrees</a></h3>--}}
-                                        {{--<span>Tellus sit amet mollis</span>--}}
-                                    {{--</div>--}}
-                                    {{--<a href="http://placehold.it/1000x667" class="left-icon" data-lightbox="image"><i class="icon-picture"></i></a>--}}
-                                    {{--<a href="portfolio-single-1.html" class="right-icon"><i class="icon-chevron-right"></i></a>--}}
-                                {{--</div>--}}
-                            {{--</div>--}}
-                  		{{--</article>--}}
-
-                        {{--<article class="portfolio-item pf-media pf-icons">--}}
-                            {{--<div class="portfolio-image">--}}
-                                {{--<img src="http://placehold.it/400x300" alt="">--}}
-                                {{--<div class="portfolio-overlay">--}}
-                                    {{--<div class="portfolio-desc">--}}
-                                        {{--<h3><a href="portfolio-single-1.html">Ambiance</a></h3>--}}
-                                        {{--<span>Lorem ipsum dolor sit</span>--}}
-                                    {{--</div>--}}
-                                    {{--<a href="http://placehold.it/1000x667" class="left-icon" data-lightbox="image"><i class="icon-picture"></i></a>--}}
-                                    {{--<a href="portfolio-single-1.html" class="right-icon"><i class="icon-chevron-right"></i></a>--}}
-                                {{--</div>--}}
-                            {{--</div>--}}
-                  		{{--</article>--}}
-
-                        {{--<article class="portfolio-item pf-media pf-icons">--}}
-                            {{--<div class="portfolio-image">--}}
-                                {{--<img src="http://placehold.it/400x300" alt="">--}}
-                                {{--<div class="portfolio-overlay">--}}
-                                    {{--<div class="portfolio-desc">--}}
-                                        {{--<h3><a href="portfolio-single-1.html">Pastry</a></h3>--}}
-                                        {{--<span>Tellus sit amet mollis</span>--}}
-                                    {{--</div>--}}
-                                    {{--<a href="http://placehold.it/1000x667" class="left-icon" data-lightbox="image"><i class="icon-picture"></i></a>--}}
-                                    {{--<a href="portfolio-single-1.html" class="right-icon"><i class="icon-chevron-right"></i></a>--}}
-                                {{--</div>--}}
-                            {{--</div>--}}
-                  		{{--</article>--}}
-
-                        {{--<article class="portfolio-item pf-media pf-icons">--}}
-                            {{--<div class="portfolio-image">--}}
-                            {{--<div class="fslider" data-arrows="false" data-speed="400" data-pause="4000">--}}
-                                {{--<div class="flexslider">--}}
-                                    {{--<div class="slider-wrap">--}}
-                                        {{--<div class="slide"><img src="http://placehold.it/400x300" alt=""></div>--}}
-                                        {{--<div class="slide"><img src="http://placehold.it/400x300" alt=""></div>--}}
-                                    {{--</div>--}}
-                                {{--</div>--}}
-                            {{--</div>--}}
-                                {{--<div class="portfolio-overlay" data-lightbox="gallery">--}}
-                                    {{--<div class="portfolio-desc">--}}
-                                        {{--<h3><a href="portfolio-single-1.html">A La Carte</a></h3>--}}
-                                        {{--<span>Lorem ipsum dolor sit</span>--}}
-                                    {{--</div>--}}
-                                	{{--<a href="http://placehold.it/1000x667" class="left-icon" data-lightbox="gallery-item"><i class="icon-buffer"></i></a>--}}
-                                	{{--<a href="http://placehold.it/1000x667" class="hidden" data-lightbox="gallery-item"></a>--}}
-                                    {{--<a href="portfolio-single-1.html" class="right-icon"><i class="icon-chevron-right"></i></a>--}}
-                                {{--</div>--}}
-                            {{--</div>--}}
-                  		{{--</article>--}}
-
-                        {{--<article class="portfolio-item pf-media pf-icons">--}}
-                            {{--<div class="portfolio-image">--}}
-                                {{--<img src="http://placehold.it/400x300" alt="">--}}
-                                {{--<div class="portfolio-overlay">--}}
-                                    {{--<div class="portfolio-desc">--}}
-                                        {{--<h3><a href="portfolio-single-1.html">Desserts</a></h3>--}}
-                                        {{--<span>tellus sit amet mollis</span>--}}
-                                    {{--</div>--}}
-                                    {{--<a href="http://placehold.it/1000x667" class="left-icon" data-lightbox="image"><i class="icon-picture"></i></a>--}}
-                                    {{--<a href="portfolio-single-1.html" class="right-icon"><i class="icon-chevron-right"></i></a>--}}
-                                {{--</div>--}}
-                            {{--</div>--}}
-                  		{{--</article>--}}
-
-                        {{--<article class="portfolio-item pf-media pf-icons">--}}
-                            {{--<div class="portfolio-image">--}}
-                            {{--<div class="fslider" data-arrows="false" data-speed="400" data-pause="4000">--}}
-                                {{--<div class="flexslider">--}}
-                                    {{--<div class="slider-wrap">--}}
-                                        {{--<div class="slide"><img src="http://placehold.it/400x300" alt=""></div>--}}
-                                        {{--<div class="slide"><img src="http://placehold.it/400x300" alt=""></div>--}}
-                                        {{--<div class="slide"><img src="http://placehold.it/400x300" alt=""></div>--}}
-                                    {{--</div>--}}
-                                {{--</div>--}}
-                            {{--</div>--}}
-                                {{--<div class="portfolio-overlay" data-lightbox="gallery">--}}
-                                    {{--<div class="portfolio-desc">--}}
-                                        {{--<h3><a href="portfolio-single-1.html">Specialties</a></h3>--}}
-                                        {{--<span>Lorem ipsum dolor sit</span>--}}
-                                    {{--</div>--}}
-                                	{{--<a href="http://placehold.it/1000x667" class="left-icon" data-lightbox="gallery-item"><i class="icon-buffer"></i></a>--}}
-                                	{{--<a href="http://placehold.it/1000x667" class="hidden" data-lightbox="gallery-item"></a>--}}
-                                	{{--<a href="http://placehold.it/1000x667" class="hidden" data-lightbox="gallery-item"></a>--}}
-                                    {{--<a href="portfolio-single-1.html" class="right-icon"><i class="icon-chevron-right"></i></a>--}}
-                                 {{--</div>--}}
-                            {{--</div>--}}
-                  		{{--</article>--}}
-
-                        {{--<article class="portfolio-item pf-media pf-icons">--}}
-                            {{--<div class="portfolio-image">--}}
-                                {{--<img src="http://placehold.it/400x300" alt="">--}}
-                                {{--<div class="portfolio-overlay">--}}
-                                    {{--<div class="portfolio-desc">--}}
-                                        {{--<h3><a href="portfolio-single-video.html">Dining Experience</a></h3>--}}
-                                        {{--<span>Tellus sit amet mollis</span>--}}
-                                    {{--</div>--}}
-                                    {{--<a href="http://player.vimeo.com/video/80975867" class="left-icon" data-lightbox="iframe"><i class="icon-play"></i></a>--}}
-                                    {{--<a href="portfolio-single-video.html" class="right-icon"><i class="icon-chevron-right"></i></a>--}}
-                                {{--</div>--}}
-                            {{--</div>--}}
-                  		{{--</article>--}}
-
-                        {{--<article class="portfolio-item pf-media pf-icons">--}}
-                            {{--<div class="portfolio-image">--}}
-                                {{--<img src="http://placehold.it/400x300" alt="">--}}
-                                {{--<div class="portfolio-overlay">--}}
-                                    {{--<div class="portfolio-desc">--}}
-                                        {{--<h3><a href="portfolio-single-1.html">Head Chef</a></h3>--}}
-                                        {{--<span>Lorem ipsum dolor sit</span>--}}
-                                    {{--</div>--}}
-                                    {{--<a href="http://placehold.it/1000x667" class="left-icon" data-lightbox="image"><i class="icon-picture"></i></a>--}}
-                                    {{--<a href="portfolio-single-1.html" class="right-icon"><i class="icon-chevron-right"></i></a>--}}
-                                {{--</div>--}}
-                            {{--</div>--}}
-                  		{{--</article>--}}
-
-                        {{--<article class="portfolio-item pf-media pf-icons">--}}
-                            {{--<div class="portfolio-image">--}}
-                                {{--<img src="http://placehold.it/400x300" alt="">--}}
-                                {{--<div class="portfolio-overlay">--}}
-                                    {{--<div class="portfolio-desc">--}}
-                                        {{--<h3><a href="portfolio-single-1.html">Imported</a></h3>--}}
-                                        {{--<span>Tellus sit amet mollis</span>--}}
-                                    {{--</div>--}}
-                                    {{--<a href="http://placehold.it/1000x667" class="left-icon" data-lightbox="image"><i class="icon-picture"></i></a>--}}
-                                    {{--<a href="portfolio-single-1.html" class="right-icon"><i class="icon-chevron-right"></i></a>--}}
-                                {{--</div>--}}
-                            {{--</div>--}}
-                  		{{--</article>--}}
-
-                        {{--<article class="portfolio-item pf-media pf-icons">--}}
-                            {{--<div class="portfolio-image">--}}
-                                {{--<img src="http://placehold.it/400x300" alt="">--}}
-                                {{--<div class="portfolio-overlay">--}}
-                                    {{--<div class="portfolio-desc">--}}
-                                        {{--<h3><a href="portfolio-single-1.html">Wine Tasting</a></h3>--}}
-                                        {{--<span>Lorem ipsum dolor sit</span>--}}
-                                    {{--</div>--}}
-                                    {{--<a href="http://placehold.it/1000x667" class="left-icon" data-lightbox="image"><i class="icon-picture"></i></a>--}}
-                                    {{--<a href="portfolio-single-1.html" class="right-icon"><i class="icon-chevron-right"></i></a>--}}
-                                {{--</div>--}}
-                            {{--</div>--}}
-                  		{{--</article>--}}
-
-                        {{--<article class="portfolio-item pf-media pf-icons">--}}
-
-                            {{--<div class="portfolio-image">--}}
-                                {{--<img src="http://placehold.it/400x300" alt="">--}}
-                                {{--<div class="portfolio-overlay">--}}
-                                    {{--<div class="portfolio-desc">--}}
-                                        {{--<h3><a href="portfolio-single-1.html">Special Label</a></h3>--}}
-                                        {{--<span>Tellus sit amet mollis</span>--}}
-                                    {{--</div>--}}
-                                    {{--<a href="http://placehold.it/1000x667" class="left-icon" data-lightbox="image"><i class="icon-picture"></i></a>--}}
-                                    {{--<a href="portfolio-single-1.html" class="right-icon"><i class="icon-chevron-right"></i></a>--}}
-                                {{--</div>--}}
-                            {{--</div>--}}
-                  		{{--</article>--}}
-
-                        {{--<article class="portfolio-item pf-media pf-icons">--}}
-                            {{--<div class="portfolio-image">--}}
-                                {{--<img src="http://placehold.it/400x300" alt="">--}}
-                                {{--<div class="portfolio-overlay">--}}
-                                    {{--<div class="portfolio-desc">--}}
-                                        {{--<h3><a href="portfolio-single-1.html">Dinner Specials</a></h3>--}}
-                                        {{--<span>Lorem ipsum dolor sit</span>--}}
-                                    {{--</div>--}}
-                                    {{--<a href="http://placehold.it/1000x667" class="left-icon" data-lightbox="image"><i class="icon-picture"></i></a>--}}
-                                    {{--<a href="portfolio-single-1.html" class="right-icon"><i class="icon-chevron-right"></i></a>--}}
-                                {{--</div>--}}
-                            {{--</div>--}}
-                  		{{--</article>--}}
-
-                {{--</div>--}}
-                <!-- End Portfolio Items-->
 
                 <!-- Portfolio Script
                 ============================================= -->
@@ -362,13 +192,13 @@
                             <div class="entry last clearfix">
                                 <div class="entry-image clearfix">
                                     <div class="portfolio-single-image masonry-thumbs col-5" data-big="2" data-lightbox="gallery">
-                                       <a href="http://placehold.it/2000x1333" data-lightbox="gallery-item"><img class="image_fade" src="http://placehold.it/400x300" alt=""></a>
-                                       <a href="http://placehold.it/2000x1333" data-lightbox="gallery-item"><img class="image_fade" src="http://placehold.it/400x300" alt=""></a>
-                                       <a href="http://placehold.it/2000x1333" data-lightbox="gallery-item"><img class="image_fade" src="http://placehold.it/400x300" alt=""></a>
-                                       <a href="http://placehold.it/2000x1333" data-lightbox="gallery-item"><img class="image_fade" src="http://placehold.it/400x300" alt=""></a>
-                                       <a href="http://placehold.it/2000x1333" data-lightbox="gallery-item"><img class="image_fade" src="http://placehold.it/400x300" alt=""></a>
-                                       <a href="http://placehold.it/2000x1333" data-lightbox="gallery-item"><img class="image_fade" src="http://placehold.it/400x300" alt=""></a>
-                                       <a href="http://placehold.it/2000x1333" data-lightbox="gallery-item"><img class="image_fade" src="http://placehold.it/400x300" alt=""></a>                                    </div>
+                                        @foreach ($topSuppliers as $topSupplier)
+                                           <a href="{{ $topSupplier->brand_image != "" ? '/uploads/brands/'.$topSupplier->brand_image :
+                                                'http://placehold.it/2000x1333' }}" data-lightbox="gallery-item">
+                                                <img class="image_fade" src="{{ $topSupplier->brand_image != ""
+                                                ? '/uploads/brands/'.$topSupplier->brand_image : 'http://placehold.it/400x300' }}" alt=""></a>
+                                        @endforeach
+                                   </div>
                                 </div>
                                 <div class="entry-title">
                                     <h2><a href="blog-single-thumbs.html">Blog Post with Masonry Thumbnails</a></h2>
@@ -437,12 +267,16 @@
                     </div>
            	  	</div>
 
-                <div class="promo promo-light promo-full topmargin-lg footer-stick">
-                    <div class="container clearfix">
-                        <h3>Call us today @ <span class="color">(341) 457 432678</span> or Email us <span class="color">info@chocolat.com</span></h3>
-                        <span>Chocolat is a Responsive Bootstrap 3 Compatible Theme with Endless Customization Possibilities</span>
-                        <a href="#" class="button button-rounded button-reveal button-large button-3d tright"><i class="icon-angle-right"></i><span>Reservations</span></a>                    </div>
-           	  </div>
+                {{--<div class="promo promo-light promo-full topmargin-lg footer-stick">--}}
+                    {{--<div class="container clearfix">--}}
+                        {{--<div class="col-md-10">--}}
+                            {{--<h3>Call us today @ <span class="color">(341) 457 432678</span> or Email us <span class="color">info@chocolat.com</span></h3>--}}
+                            {{--<span>Chocolat is a Responsive Bootstrap 3 Compatible Theme with Endless Customization Possibilities</span>--}}
+                        {{--</div>--}}
+                        {{--<div class="col-md-2">--}}
+                            {{--<a href="#" class="button button-rounded button-reveal button-large button-3d tright"><i class="icon-angle-right"></i><span>Reservations</span></a>                    </div>--}}
+                        {{--</div>--}}
+           	  {{--</div>--}}
 
             </div>
 @stop

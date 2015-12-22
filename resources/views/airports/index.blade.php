@@ -14,13 +14,11 @@
          <a href="/airports/form" class="btn btn-info right">Novo aeroporto</a>
       </div>
       <div class="col-lg-3">
-        <div class="input-group">
+        <div>
          <form action="/airports/?page=<?php echo $data->currentPage(); ?>" method="get" class="form-inline">
               <input type="text" class="form-control" name="search" id="table-search"
                placeholder="Pesquisar..." value="<?php echo $search;?>">
-              <span class="input-group-btn">
                 <button class="btn btn-default" type="submit">Pesquisar</button>
-              </span>
           </form>
         </div><!-- /input-group -->
       </div><!-- /.col-lg-6 -->

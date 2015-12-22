@@ -17,12 +17,12 @@ class CreateCategoriesTable extends Migration
             $table->string('name');
             $table->string('image')->nullable();
             $table->dateTime('deleted_at')->nullable();
-//            $table->integer('category_id')->unsigned()->nullable();
+            $table->integer('category_id')->unsigned()->nullable();
             $table->timestamps();
         });
 
         Schema::table('categories', function (Blueprint $table) {
-//            $table->foreign('category_id')->references('id')->on('categories');
+            $table->foreign('category_id')->references('id')->on('categories');
         });
     }
 

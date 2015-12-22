@@ -14,7 +14,7 @@
 
               <?php echo $__env->make('layouts.messages', array('errors' => $errors,
               'messages' => Session::get('messages')), array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
-              <div class="col-md-6">
+              <div class="col-md-12">
                   <input type="hidden" name="_token" value="<?php echo e(csrf_token()); ?>">
 
                   <div class="form-group">
@@ -23,52 +23,63 @@
                     <?php echo Form::select('supplier_id', $suppliers, $vo->supplier_id, ['placeholder' => 'Selecione...', 'class'=>'form-control required']);; ?>
 
                   </div>
+                  <?php /*<div class="form-group">*/ ?>
+                      <?php /*<?php echo Form::label('categories', 'Selecione as categorias do seu produto ou serviço'); ?>*/ ?>
+                      <?php /*<table class="table table-bordered">*/ ?>
+                        <?php /*<tbody>*/ ?>
+                            <?php /*<?php foreach($categories as $categoryGroup): ?>*/ ?>
+                              <?php /*<tr>*/ ?>
+                                <?php /*<?php foreach($categoryGroup as $categoryId => $categoryName): ?>*/ ?>
+                                  <?php /*<td><?php echo Form::checkbox('categories[]', $categoryId, $vo->categories->contains($categoryId)); ?> <?php echo e($categoryName); ?></td>*/ ?>
+                                <?php /*<?php endforeach; ?>*/ ?>
+                              <?php /*</tr>*/ ?>
+                            <?php /*<?php endforeach; ?>*/ ?>
+                        <?php /*</tbody>*/ ?>
+                      <?php /*</table>*/ ?>
+                  <?php /*</div>*/ ?>
                   <div class="form-group">
-                      <?php echo Form::label('categories', 'Selecione as categorias do seu produto ou serviço'); ?>
+                      <?php echo Form::label('category_id', 'Categoria'); ?>
 
-                      <table class="table table-bordered">
-                        <tbody>
-                            <?php foreach($categories as $categoryGroup): ?>
-                              <tr>
-                                <?php foreach($categoryGroup as $categoryId => $categoryName): ?>
-                                  <td><?php echo Form::checkbox('categories[]', $categoryId, $vo->categories->contains($categoryId)); ?> <?php echo e($categoryName); ?></td>
-                                <?php endforeach; ?>
-                              </tr>
-                            <?php endforeach; ?>
-                        </tbody>
-                      </table>
-                  </div>
+                      <?php echo Form::select('category_id', $categories, $vo->category_id, ['placeholder' => 'Selecione...', 'class'=>'form-control required']);; ?>
+
+                    </div>
+                    <div class="form-group">
+                        <?php echo Form::label('sub_category_id', 'Sub categoria'); ?>
+
+                        <?php echo Form::select('sub_category_id', $subCategories, $vo->sub_category_id, ['placeholder' => 'Selecione...', 'class'=>'form-control']);; ?>
+
+                      </div>
                   <div class="form-group">
                       <?php echo Form::label('description', 'Descrição do produto ou serviço'); ?>
 
                       <?php echo Form::textarea('description', $vo->description, ['placeholder' => 'Descrição', 'class'=>'form-control required']);; ?>
 
                   </div>
-                    <div class="col-md-12">
-                        <div class="form-group">
-                         <?php echo Form::label('galleries[]', 'Imagens do produto ou serviço'); ?>
+                    <div class="form-group">
+                     <?php echo Form::label('galleries[]', 'Selecione até 3 imagens do produto ou serviço'); ?>
 
-                         <?php echo Form::file('galleries[]', ['placeholder' => 'Galleria',
-                         'class'=>'', 'multiple' => 'multiple', 'accept' => 'png|jpe?g']); ?>
+                     <?php echo Form::file('galleries[]', ['placeholder' => 'Galleria',
+                     'class'=>'', 'multiple' => 'multiple', 'accept' => 'png|jpe?g']); ?>
 
-                        </div>
-                        <div class="form-group">
-                            <?php
-                             foreach($vo->galleries as $gallery) { ?>
-                            <div class="col-md-2">
-                                <img src="<?php echo $gallery->name != "" ?
-                                    '/uploads/products/'.md5($vo->id).'/'.$gallery->name : 'http://placehold.it/50x50';?>" alt="..." class="img-thumbnail">
-                            </div>
-                            <?php } ?>
-                        </div>
                     </div>
+                    <hr />
+                    <div class="row">
+                        <?php
+                         foreach($vo->galleries as $gallery) { ?>
+                        <div class="col-md-2">
+                            <img src="<?php echo $gallery->name != "" ?
+                                '/uploads/products/'.md5($vo->id).'/'.$gallery->name : 'http://placehold.it/50x50';?>" alt="..." class="img-thumbnail">
+                        </div>
+                        <?php } ?>
+                    </div>
+
               </div>
             <hr />
-            <div class="col-md-12">
+            <div class="col-md-12" style="margin-top:40px">
                 <div class="form-group">
                     <?php echo Form::hidden('id', $vo->id); ?>
 
-                    <a href="/products"
+                    <a href="/suppliers"
                                 class="btn btn-primary btn-info confirm" >Voltar para a lista</a>
                     <button type="submit" class="btn btn-primary">
                         Concluir
@@ -81,7 +92,12 @@
     </div>
 
 </section>
+
 <script type="text/javascript">
+$(document).ready(function(){
+    getOptionsViaAjax('#category_id' , '#sub_category_id' , '/categories/export-pairs/category_id/');
+});
+
 //wizard with options and events
 $("#product-form").validate();
 

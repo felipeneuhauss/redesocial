@@ -12,7 +12,7 @@ class Category extends Model implements ModelInterface
 
     protected $table = 'categories';
 
-    protected $fillable = ["id","name", "image"];
+    protected $fillable = ["id","name", "image", "category_id"];
 
     /**
      * The attributes that should be mutated to dates.

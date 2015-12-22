@@ -14,9 +14,7 @@
 Route::get('/', 'Index\HomeController@index');
 Route::match(array('GET', 'POST'), '/contact', 'Index\HomeController@contact');
 Route::match(array('GET', 'POST'), '/send-contact-mail', 'Index\HomeController@sendContactMail');
-Route::get('/home', function(){
-    return view('index.home', ['showSlides' => true]);
-});
+Route::get('/home', 'Index\HomeController@index');
 
 
 Route::get('auth/login', 'Auth\AuthController@getLogin');
@@ -80,6 +78,7 @@ Route::group(['prefix' => 'suppliers'], function () {
             'uses' => 'Supplier\SupplierController@remove'
         )
     )->where('id', '[0-9]+');
+    Route::post('contact', 'Supplier\SupplierController@contact');
 });
 
 
@@ -89,7 +88,7 @@ Route::group(['prefix' => 'categories'], function () {
 
     Route::get('', 'Category\CategoryController@index');
     Route::get('list', 'Category\CategoryController@getAll');
-    Route::get('export-pairs', 'Category\CategoryController@exportPairs');
+    Route::get('export-pairs/{column}/{id?}', 'Category\CategoryController@exportPairs')->where('id', '[0-9]+');
     Route::get('detail/{id?}', 'Category\CategoryController@detail')->where('id', '[0-9]+');
     Route::get('remove/{id?}',
         array(
@@ -111,4 +110,15 @@ Route::group(['prefix' => 'products'], function () {
             'uses' => 'Product\ProductController@remove'
         )
     )->where('id', '[0-9]+');
+});
+
+Route::group(['prefix' => 'ratings'], function () {
+    Route::match(array('GET' , 'POST'),'form/{id?}/{supplier_id?}', 'Rating\RatingController@form')
+        ->where('id', '[0-9]+')->where('supplier_id', '[0-9]+');
+
+});
+
+Event::listen('illuminate.query', function($query, $bindings, $time)
+{
+//    dump($query, $bindings, $time);
 });
