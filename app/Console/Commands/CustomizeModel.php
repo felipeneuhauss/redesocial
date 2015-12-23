@@ -6,6 +6,14 @@ use Illuminate\Console\Command;
 use Illuminate\Support\Facades\DB;
 use PhpSpec\Exception\Exception;
 
+
+/**
+ * Class responsible to generate a model or a set of models based in database tables
+ * and configure your structure with interfaces and inheritance
+ *
+ * Class CustomizeModel
+ * @package App\Console\Commands
+ */
 class CustomizeModel extends Command
 {
     /**

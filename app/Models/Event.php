@@ -17,7 +17,7 @@ class Event extends Model implements ModelInterface
     protected $fillable = ['id', 'name', 'init_at', 'end_at', 'init_hour', 'end_hour', 'password', 'max_attendees', 'quantity_person_waiting', 'description', 'country', 'zip_code', 'address', 'district', 'city', 'state', 'number', 'complement', 'image', 'link', 'phone', 'email', 'site', 'facebook', 'created_at', 'updated_at'];
 
     public function suppliers() {
-        return $this->belongsToMany('App\Models\Suppliers', 'event_suppliers');
+        return $this->belongsToMany('App\Models\Supplier', 'event_suppliers');
     }
 
     public function queryPagination($perPage = 15, $search)

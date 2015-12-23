@@ -9922,3 +9922,11 @@ hr {
     margin-bottom: 10px;
     margin-top: 10px;
 }
+
+.typeahead { z-index: 1051; }
+
+.align-right {
+    float:right;color:#333 !important;
+    font-weight: normal;
+
+}

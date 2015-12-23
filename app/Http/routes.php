@@ -73,6 +73,7 @@ Route::group(['prefix' => 'suppliers'], function () {
     Route::get('list', 'Supplier\SupplierController@getAll');
     Route::get('all-suppliers', 'Supplier\SupplierController@allSuppliers');
     Route::get('detail/{id?}', 'Supplier\SupplierController@detail')->where('id', '[0-9]+');
+    Route::get('autocomplete/{term}', 'Supplier\SupplierController@autocomplete');
     Route::get('remove/{id?}',
         array(
             'uses' => 'Supplier\SupplierController@remove'
@@ -108,6 +109,21 @@ Route::group(['prefix' => 'products'], function () {
     Route::get('remove/{id?}',
         array(
             'uses' => 'Product\ProductController@remove'
+        )
+    )->where('id', '[0-9]+');
+});
+
+Route::group(['prefix' => 'events'], function () {
+    Route::match(array('GET' , 'POST'),'form/{id?}', 'Event\EventController@form')
+        ->where('id', '[0-9]+');
+
+    Route::get('', 'Event\EventController@index');
+    Route::get('list', 'Event\EventController@getAll');
+    Route::get('export-pairs', 'Event\EventController@exportPairs');
+    Route::get('detail/{id?}', 'Event\EventController@detail')->where('id', '[0-9]+');
+    Route::get('remove/{id?}',
+        array(
+            'uses' => 'Event\EventController@remove'
         )
     )->where('id', '[0-9]+');
 });

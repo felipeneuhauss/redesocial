@@ -49,7 +49,7 @@ if (! function_exists('num_random')) {
         for ($i = ($quantity-$value) ; $i >= 1; $i--) {
             $html .="<i class='icon-star-empty'></i>";
         }
-        $html . " " . ($rating_quantity > 0 ? $rating_quantity : '0')   . (($showEvaluates ? " Avaliações". " " : "")) ;
+        $html .= " " . ($rating_quantity > 0 ? $rating_quantity : '0')   . (($showEvaluates ? " Avaliações". " " : "")) ;
         return $html .= "</div>";
     }
 
@@ -61,6 +61,33 @@ if (! function_exists('num_random')) {
     function get_numerics ($str) {
         preg_match_all('/\d+/', $str, $matches);
         return $matches[0][0];
+    }
+
+    /**
+     * @param $date
+     * @return string
+     */
+    function convert_date_to_db($date = "") {
+        $newDate = array();
+        if ($date != "") {
+            $newDate = explode('/', $date);
+            $date = $newDate[2].'-'.$newDate[1].'-'.$newDate[0];
+        }
+        return $date;
+    }
+
+    /**
+     * @param $date
+     * @return string
+     */
+    function humanize_date($date = "") {
+        $newDate = array();
+        if ($date != "") {
+            $newDate = explode(' ', $date);
+            $newDate = explode('-', $newDate[0]);
+            $date = $newDate[2].'/'.$newDate[1].'/'.$newDate[0];
+        }
+        return $date;
     }
 
 }

@@ -4,8 +4,13 @@ namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\DB;
-use PhpSpec\Exception\Exception;
 
+/**
+ * Class responsible to generate a validate definition an messages to be copy and past into the controller
+ *
+ * Class GenerateValidation
+ * @package App\Console\Commands
+ */
 class GenerateValidation extends Command
 {
     /**

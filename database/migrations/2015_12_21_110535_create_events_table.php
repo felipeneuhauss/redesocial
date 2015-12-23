@@ -32,11 +32,12 @@ class CreateEventsTable extends Migration
             $table->string('number', 10);
             $table->string('complement');
             $table->string('image', 255);
-            $table->string('link', 255);
+            $table->string('link')->unique()->index();
             $table->string('phone', 15);
             $table->string('email', 200);
             $table->string('site', 255);
             $table->string('facebook', 255);
+            $table->dateTime('deleted_at')->nullable();
             $table->timestamps();
         });
     }

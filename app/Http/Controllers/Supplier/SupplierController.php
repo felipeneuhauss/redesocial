@@ -13,6 +13,7 @@ use App\Models\Gallery;
 use App\Models\Supplier;
 use App\Models\SupplierGallery;
 use App\Repositories\Eloquent\Repository;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
 use Intervention\Image\Facades\Image;
 use Request;
@@ -205,6 +206,14 @@ class SupplierController extends AppController {
                 return "Tivemos problemas para enviar seu e-mail.". $e->getMessage();
             }
         }
+    }
+
+    public function autocomplete($term) {
+        return DB::table('suppliers')
+            ->select(DB::raw('id, fantasy_name as name, grade, brand_image, description, rating_quantity'))
+            ->where('fantasy_name', 'like', '%'. $term . '%')
+            ->whereNull('deleted_at')
+            ->get();
     }
 
 }

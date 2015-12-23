@@ -24,6 +24,13 @@ function setMasks() {
     $('table').delegate( 'a' , 'hover' ,function(){$('a').tooltip();});
 
     $(".cnpj").mask("99.999.999/9999-99");
+
+    $.mask.definitions['H'] = "[0-2]";
+    $.mask.definitions['h'] = "[0-9]";
+    $.mask.definitions['M'] = "[0-5]";
+    $.mask.definitions['m'] = "[0-9]";
+
+    $(".hour").mask("Hh:Mm");
     $(".cep").mask("99999-999");
     $(".cpf").mask("999.999.999-99");
     $(".datepicker").mask("99/99/9999");
@@ -538,4 +545,22 @@ var resetDiscountMask = function(value){
     return parseFloat(value.replace("%","")).toFixed(1);
 }
 
+
+var generateStars = function ($quantity, $value, $rating_quantity, $showEvaluates) {
+    $quantity = $quantity || 5;
+    $value = $value || 0;
+    $rating_quantity = $rating_quantity || 0;
+    $showEvaluates = $showEvaluates || true;
+    $value = Math.round($value);
+    $html = "<div style='color:#EAAF22'>";
+
+    for (var $i = parseInt($value); $i > 0; $i--) {
+        $html +="<i class='icon-star3'> </i>";
+    }
+    for (var $i = (parseInt($quantity)-parseInt($value)) ; $i >= 1; $i--) {
+        $html +="<i class='icon-star-empty'></i>";
+    }
+    $html += " " + ($rating_quantity > 0 ? $rating_quantity : '0') + " "+ (($showEvaluates ? " Avaliações"+ " " : "")) ;
+    return $html += "</div>";
+}
 

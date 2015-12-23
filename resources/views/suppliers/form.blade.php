@@ -1,6 +1,8 @@
 @extends('layouts.layout')
 
 @section('content')
+
+{{old('suppliers')}}
 <section id="page-title" class="page-title-parallax page-title-dark" style="background-color: #555555; height:127px; padding: 40px 0px;" data-stellar-background-ratio="0.3">
     <div class="container clearfix">
         <h1>Nova empresa</h1>
