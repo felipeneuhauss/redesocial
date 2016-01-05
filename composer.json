@@ -12,7 +12,7 @@
         "laravelcollective/html": "5.1.*",
         "querypath/QueryPath": ">=3.0.0",
         "intervention/image": "^2.3",
-        "gabordemooij/redbean": "dev-master"
+        "hybridauth/hybridauth": "^2.5"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",

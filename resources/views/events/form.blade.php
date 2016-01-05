@@ -22,7 +22,6 @@
                 <div class="tab-content">
                     <div class="tab-pane" id="tab1">
                       <div class="row">
-
                           @include('layouts.messages', array('errors' => $errors,
                           'messages' => Session::get('messages')))
                           <div class="col-md-6">
@@ -57,7 +56,7 @@
                               <div class="form-group">
                                 {!! Form::label('quantity_person_waiting', 'Número máx. de pessoas na fila de espera') !!}
                                 {!! Form::text('quantity_person_waiting', $vo->quantity_person_waiting, ['placeholder' => 'Número máx. de pessoas na fila de espera', 'class'=>'form-control required number digits']); !!}
-                            </div>
+                              </div>
                           </div>
                           <div class="col-md-6">
                               <div class="form-group">
@@ -88,7 +87,6 @@
                                  {!! Form::label('address', 'Endereço') !!}
                                  {!! Form::text('address', $vo->address, ['placeholder' => 'Endereço', 'class'=>'form-control required']); !!}
                               </div>
-
                               <div class="form-group">
                                  {!! Form::label('number', 'Número') !!}
                                  {!! Form::text('number', $vo->number, ['placeholder' => 'Número', 'class'=>'form-control required']); !!}
@@ -97,7 +95,6 @@
                                  {!! Form::label('complement', 'Complemento') !!}
                                  {!! Form::text('complement', $vo->complement, ['placeholder' => 'Complemento', 'class'=>'form-control']); !!}
                               </div>
-
                           </div>
                           <div class="col-md-12">
                               <div class="checkbox">
